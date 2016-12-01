@@ -1,12 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
+
     <FrameLayout
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <com.dalong.library.view.LoopRotarySwitchView
+            android:id="@+id/mLoopRotarySwitchView"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            app:direction="right">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:src="@drawable/image" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:src="@drawable/image" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:src="@drawable/image" />
+
+        </com.dalong.library.view.LoopRotarySwitchView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="right">
+
+            <TextView
+                android:id="@+id/top_novel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="小说名字"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/top_novel_readState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/top_novel_name"
+                android:layout_marginTop="10dp"
+                android:text="已读10.1%"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/top_novel_readBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/top_novel_readState"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/top_readbtn_corners"
+                android:gravity="center"
+                android:text="继续阅读"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="#888e5b5b" />
     </FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mybook_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </LinearLayout>
