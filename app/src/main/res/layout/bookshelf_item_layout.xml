@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bookshelf_item_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/bookshelf_item_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/image" />
-
-    <TextView
-        android:layout_marginTop="4dp"
-        android:text="斗罗大陆"
-        android:id="@+id/book_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        fresco:placeholderImage="@drawable/img_add"
+        fresco:roundAsCircle="false"
+        fresco:roundingBorderColor="#e6e6e6"
+        fresco:roundedCornerRadius="1dp"
+        fresco:roundingBorderWidth="0.5dp"
+      />
 
     <LinearLayout
-        android:layout_marginTop="4dp"
+        android:id="@+id/book_inroduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/book_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="完结" />
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:singleLine="true" />
 
-        <TextView
-            android:layout_marginLeft="5dp"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已读12.2%" />
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/book_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:textSize="@dimen/book_name_size" />
+
+            <TextView
+                android:id="@+id/book_readState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_marginLeft="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/book_name_size" />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

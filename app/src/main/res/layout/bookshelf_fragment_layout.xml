@@ -13,9 +13,10 @@
         android:layout_height="wrap_content">
 
         <com.dalong.library.view.LoopRotarySwitchView
+            android:gravity="center"
             android:id="@+id/mLoopRotarySwitchView"
             android:layout_width="120dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             app:direction="right">

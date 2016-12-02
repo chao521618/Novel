@@ -1,10 +1,12 @@
 package yueshenginfo.com.mynovel.module.home.adapter;
 
 import android.content.Context;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -25,7 +27,18 @@ public class BookShelfAdapter extends BaseQuickAdapter<BookShelfBean> {
     @Override
     protected void convert(BaseViewHolder baseViewHolder, BookShelfBean bookShelfBean) {
         int width = Utils.getScreenWidth(mContext) / 3;
+        baseViewHolder.setText(R.id.book_name, bookShelfBean.getName());
+        baseViewHolder.setText(R.id.book_state, bookShelfBean.getBookState());
+        baseViewHolder.setText(R.id.book_readState, bookShelfBean.getReadState());
+        //item的一个布局
         LinearLayout mLinearLayout = baseViewHolder.getView(R.id.bookshelf_item_layout);
-        mLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(width,width*2));
+        //图片
+        SimpleDraweeView mSimpleDraweeView = baseViewHolder.getView(R.id.bookshelf_item_view);
+        //图片底下的一个布局
+        LinearLayout mBookIntroductionLayout = baseViewHolder.getView(R.id.book_inroduction);
+        mLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(width, width * 3/2));
+        mSimpleDraweeView.setLayoutParams(new LinearLayout.LayoutParams(width * 4 / 5, width * 30 / 29));
+        mBookIntroductionLayout.setLayoutParams(new LinearLayout.LayoutParams(width * 4 / 5, ViewGroup.LayoutParams.WRAP_CONTENT));
+        mSimpleDraweeView.setImageURI(bookShelfBean.getImg());
     }
 }
