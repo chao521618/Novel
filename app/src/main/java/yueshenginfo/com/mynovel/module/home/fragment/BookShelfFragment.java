@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.dalong.library.listener.OnItemSelectedListener;
 import com.dalong.library.view.LoopRotarySwitchView;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -86,6 +86,7 @@ public class BookShelfFragment extends IBaseFragment {
         });
         mBookShelfAdapter.addFooterView(footerView);
         mRecyclerView.setAdapter(mBookShelfAdapter);
+        initListener();
     }
 
     @Override
@@ -201,13 +202,14 @@ public class BookShelfFragment extends IBaseFragment {
     /**
      * 书籍item的点击事件
      */
-    private void initAdapter() {
-        mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
+    private void initListener() {
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
-            public void SimpleOnItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
                 Intent mIntent=new Intent(mContext, ReadActivity.class);
                 startActivity(mIntent);
             }
+
         });
     }
 }
