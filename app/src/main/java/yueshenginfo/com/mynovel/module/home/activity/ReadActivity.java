@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,8 +14,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import yueshenginfo.com.mynovel.IBaseActivity;
 import yueshenginfo.com.mynovel.R;
+import yueshenginfo.com.mynovel.module.home.dto.BookContentDto;
+import yueshenginfo.com.mynovel.module.home.presenter.BookContentPresenter;
+import yueshenginfo.com.mynovel.module.home.view.BookContentView;
 
-public class ReadActivity extends IBaseActivity {
+public class ReadActivity extends IBaseActivity implements BookContentView {
 
     @Bind(R.id.read_content_bottom_setting)
     TextView readContentBottomSetting;
@@ -28,7 +32,10 @@ public class ReadActivity extends IBaseActivity {
     LinearLayout readContentBottomLayout;
     @Bind(R.id.read_layout)
     RelativeLayout readLayout;
-    private TranslateAnimation mShowAction,mHiddenAction;
+    @Bind(R.id.read_content_layout)
+    FrameLayout readContentLayout;
+    private TranslateAnimation mShowAction, mHiddenAction;
+    private BookContentPresenter mBookContentPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,12 +48,15 @@ public class ReadActivity extends IBaseActivity {
 
     @Override
     public void initViews() {
-       // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         readLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        mBookContentPresenter = new BookContentPresenter(this);
+      //  readContentLayout.addView();
     }
 
     @Override
     public void initDatas() {
+        getBookContent();
 
     }
 
@@ -63,11 +73,11 @@ public class ReadActivity extends IBaseActivity {
                 break;
             case R.id.read_layout:
                 viewAnim();
-                if (readContentBottomLayout.getVisibility()==View.GONE){
+                if (readContentBottomLayout.getVisibility() == View.GONE) {
                     readContentBottomLayout.startAnimation(mShowAction);
                     readContentBottomLayout.setVisibility(View.VISIBLE);
                     readLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-                }else {
+                } else {
                     readLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
                     readContentBottomLayout.startAnimation(mHiddenAction);
                     readContentBottomLayout.setVisibility(View.GONE);
@@ -92,4 +102,26 @@ public class ReadActivity extends IBaseActivity {
                 1.0f);
         mHiddenAction.setDuration(300);
     }
+
+    private void getBookContent() {
+        mBookContentPresenter.getBookContent("577f72a30718e7334605cde1");
+    }
+
+    @Override
+    public void getBookContentResult(boolean isOk, BookContentDto dto) {
+
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
 }
+
+
+

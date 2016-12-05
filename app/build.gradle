@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+
+    }
+    android {
+        useLibrary 'org.apache.http.legacy'
+    }
 }
 
 dependencies {
@@ -42,4 +48,12 @@ dependencies {
     compile 'com.orhanobut:dialogplus:1.11@aar'
     //butterknife注解框架
     compile 'com.jakewharton:butterknife:7.0.1'
+    //网络部分
+    compile files('libs/gson-2.2.4.jar')
+    compile files('libs/okhttp-urlconnection-2.0.0.jar')
+    compile files('libs/Volley.jar')
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.okio:okio:1.5.0'
+    //log格式化，最终发布时可以去掉
+    compile 'com.orhanobut:logger:1.15'
 }

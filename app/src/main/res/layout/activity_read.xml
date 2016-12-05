@@ -6,7 +6,10 @@
     android:id="@+id/read_layout"
     android:background="@drawable/theme_leather_bg"
     tools:context="yueshenginfo.com.mynovel.module.home.activity.ReadActivity">
-
+<FrameLayout
+    android:id="@+id/read_content_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
     <LinearLayout
         android:visibility="gone"
         android:layout_width="match_parent"
