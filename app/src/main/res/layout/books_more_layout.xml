@@ -8,25 +8,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/book_face_sdview"
             android:layout_width="80dp"
             android:layout_height="100dp"
-            android:layout_marginRight="15dp"
             android:src="@drawable/image" />
 
         <LinearLayout
+            android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
+                android:textColor="#5b5b5b"
+                android:textSize="16sp"
                 android:id="@+id/book_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,6 +53,28 @@
                 android:singleLine="true"
                 android:text="111111" />
         </LinearLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingRight="2dp"-->
+            <!--android:textSize="16sp"-->
+            <!--android:text="2222"-->
+            <!--android:layout_toLeftOf="@+id/tv"-->
+            <!--android:id="@+id/read_count"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:id="@+id/tv"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="人追"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
     </LinearLayout>
 
     <TextView
@@ -58,5 +82,5 @@
         android:layout_height="1dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="@color/text_font_color_grey" />
+        android:background="#e4e3e3" />
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class BooksFragment extends IBaseFragment implements BooksCategoryView {
 
     @Override
     public void getBooksCategoryResult(boolean isOk, BooksCategoryDto dto) {
-        if (isOk){
+        if (isOk) {
             mMaleVOArrayList.addAll(dto.getMale());
         }
         mBooksAdapter.notifyDataSetChanged();
@@ -86,8 +87,9 @@ public class BooksFragment extends IBaseFragment implements BooksCategoryView {
             @Override
             public void SimpleOnItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
 
-                Intent intent=new Intent(mContext, MoreNovelactivity.class);
-                intent.putExtra("category",mMaleVOArrayList.get(i).getName());
+                Intent intent = new Intent(mContext, MoreNovelactivity.class);
+                intent.putExtra("category", mMaleVOArrayList.get(i).getName());
+                Log.e("category===>", mMaleVOArrayList.get(i).getName());
                 startActivity(intent);
             }
         });

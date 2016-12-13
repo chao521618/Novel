@@ -1,6 +1,8 @@
 package yueshenginfo.com.mynovel.module.morenovel.adapter;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -25,7 +27,10 @@ public class MoreNovelAdapter extends BaseQuickAdapter<BooksDto.BooksVO> {
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, BooksDto.BooksVO booksDto) {
+        Log.e("books",booksDto.getTitle());
         SimpleDraweeView mSimpleDraweeView = baseViewHolder.getView(R.id.book_face_sdview);
+        int width=Utils.getScreenWidth(mContext)/4;
+        mSimpleDraweeView.setLayoutParams(new LinearLayout.LayoutParams(width*7/8,width*10/9));
         mSimpleDraweeView.setImageURI(Utils.getImgUrl(Constants.ServiceInterFace.IMG_BASE_URL+booksDto.getCover()));
         baseViewHolder.setText(R.id.book_name_tv, booksDto.getTitle());
         baseViewHolder.setText(R.id.book_author, booksDto.getAuthor());

@@ -20,18 +20,15 @@ import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.dto.CategoryEvent;
 import yueshenginfo.com.mynovel.module.morenovel.adapter.MoreNovelAdapter;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
-import yueshenginfo.com.mynovel.module.morenovel.presenter.BooksPresenter;
 
 /**
- * Created by huchao on 2016/12/9.
+ * Created by huchao on 2016/12/13.
  * Email 1064224874@qq.com
  */
-public class NewBooksFragment extends IBaseFragment {
+public class OverFragment extends IBaseFragment {
     private RecyclerView mRecyclerView;
     private MoreNovelAdapter mMoreNovelAdapter;
     private List<BooksDto.BooksVO> mBooksVOArrayList;
-
-    private BooksPresenter mBooksPresenter;
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
@@ -51,7 +48,6 @@ public class NewBooksFragment extends IBaseFragment {
 
     @Override
     public void initViews() {
-//        mBooksPresenter = new BooksPresenter(this);
         mBooksVOArrayList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mMoreNovelAdapter = new MoreNovelAdapter(mContext, mBooksVOArrayList);
@@ -60,7 +56,6 @@ public class NewBooksFragment extends IBaseFragment {
 
     @Override
     public void initDatas() {
-//        getBooksMore();
     }
 
     @Override
@@ -77,24 +72,4 @@ public class NewBooksFragment extends IBaseFragment {
         }
         mMoreNovelAdapter.notifyDataSetChanged();
     }
-
-//    private void getBooksMore() {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("gender", "male");//gender代表男性还是女性
-//        params.put("type", "new");//type代表热门。完结等
-//        params.put("major", "玄幻");//major代表玄幻等种类
-//        params.put("limit", 5);//limit代表pagesize
-//        params.put("start", 0);//start代表从那个item开始
-//        Log.e("nicai", params.toString());
-//        mBooksPresenter.getBooks(params);
-//    }
-//
-//    @Override
-//    public void getBooksResult(boolean isOk, BooksDto booksVO) {
-//        if (isOk) {
-//            mBooksVOArrayList.addAll(booksVO.getBooks());
-//        }
-//        mMoreNovelAdapter.notifyDataSetChanged();
-//    }
-
 }
