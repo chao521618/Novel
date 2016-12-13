@@ -9,16 +9,21 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import yueshenginfo.com.mynovel.IBaseActivity;
 import yueshenginfo.com.mynovel.R;
+import yueshenginfo.com.mynovel.module.home.dto.BookChapterDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookContentDto;
+import yueshenginfo.com.mynovel.module.home.presenter.BookChapterPresenter;
 import yueshenginfo.com.mynovel.module.home.presenter.BookContentPresenter;
+import yueshenginfo.com.mynovel.module.home.view.BookChapterView;
 import yueshenginfo.com.mynovel.module.home.view.BookContentView;
 
-public class ReadActivity extends IBaseActivity implements BookContentView {
+public class ReadActivity extends IBaseActivity implements BookChapterView, BookContentView {
 
     @Bind(R.id.read_content_bottom_setting)
     TextView readContentBottomSetting;
@@ -34,9 +39,13 @@ public class ReadActivity extends IBaseActivity implements BookContentView {
     RelativeLayout readLayout;
     @Bind(R.id.read_content_layout)
     FrameLayout readContentLayout;
+    @Bind(R.id.book_name)
+    TextView bookName;
     private TranslateAnimation mShowAction, mHiddenAction;
+    private BookChapterPresenter mBookChapterPresenter;
+    private BookContentCustomView mBookContentCustomView;
     private BookContentPresenter mBookContentPresenter;
-
+    private ArrayList<String> bookContentLinkList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +59,15 @@ public class ReadActivity extends IBaseActivity implements BookContentView {
     public void initViews() {
         // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         readLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        mBookChapterPresenter = new BookChapterPresenter(this);
         mBookContentPresenter = new BookContentPresenter(this);
-      //  readContentLayout.addView();
+        bookContentLinkList = new ArrayList<>();
     }
 
     @Override
     public void initDatas() {
+        getBookChapter();
         getBookContent();
-
     }
 
     @OnClick({R.id.read_content_bottom_setting, R.id.read_content_bottom_toc, R.id.read_content_bottom_download, R.id.read_content_bottom_pattern, R.id.read_layout})
@@ -79,7 +89,7 @@ public class ReadActivity extends IBaseActivity implements BookContentView {
                     readLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
                 } else {
                     readLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-                    readContentBottomLayout.startAnimation(mHiddenAction);
+                  //  readContentBottomLayout.startAnimation(mHiddenAction);
                     readContentBottomLayout.setVisibility(View.GONE);
                 }
                 //  readContentBottomLayout.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.anim_read_bottom));
@@ -103,24 +113,31 @@ public class ReadActivity extends IBaseActivity implements BookContentView {
         mHiddenAction.setDuration(300);
     }
 
+    /**
+     * 小说章节请求
+     */
+    private void getBookChapter() {
+        mBookChapterPresenter.getBookChapter("5721d80d843a87e12703f469");
+    }
+
+    @Override
+    public void getBookChapterResult(boolean isOk, BookChapterDto dto) {
+
+    }
+
+    //小说章节请求
     private void getBookContent() {
-        mBookContentPresenter.getBookContent("577f72a30718e7334605cde1");
+        mBookContentPresenter.getBookContent("http://www.luoqiu.com/read/57830/15222014.html");
     }
 
     @Override
     public void getBookContentResult(boolean isOk, BookContentDto dto) {
-
+        bookName.setText(dto.getChapter().getTitle());
+       mBookContentCustomView = new BookContentCustomView(mContext, dto.getChapter().getBody());
+        readContentLayout.addView(mBookContentCustomView);
+       // mBookContentCustomView.setText(dto.getChapter().getBody());
     }
 
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void dismissProgress() {
-
-    }
 }
 
 

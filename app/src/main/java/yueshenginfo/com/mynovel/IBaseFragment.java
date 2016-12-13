@@ -119,7 +119,7 @@ public abstract class IBaseFragment extends Fragment {
     /**
      * 方法功能
      */
-//    public void showProgress() {
+    public void showProgress() {
 //        // 滚动条
 //        mKProgressHUD = KProgressHUD.create(mContext)
 //                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -128,12 +128,11 @@ public abstract class IBaseFragment extends Fragment {
 //                .setAnimationSpeed(2)
 //                .setDimAmount(0.6f)
 //                .show();
-//    }
+   }
 
     /**
      * 自定义标题的滚动条开始
-     */
-//    public void showProgress(String title) {
+     */public void showProgress(String title) {
 //        // 滚动条
 //        mKProgressHUD = KProgressHUD.create(mContext)
 //                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -142,16 +141,16 @@ public abstract class IBaseFragment extends Fragment {
 //                .setAnimationSpeed(2)
 //                .setDimAmount(0.6f)
 //                .show();
-//    }
+    }
 
     /**
      * 方法功能
      */
-//    public void dismissProgress() {
+    public void dismissProgress() {
 //        if (mKProgressHUD != null) {
 //            mKProgressHUD.dismiss();
 //            mKProgressHUD = null;
 //        }
-//    }
+    }
 //
 }

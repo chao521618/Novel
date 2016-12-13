@@ -106,8 +106,8 @@ public abstract class IBaseActivity extends FragmentActivity {
     /**
      * 滚动条开始
      */
-//    public void showProgress() {
-//        // 滚动条
+    public void showProgress() {
+        // 滚动条
 //        mKProgressHUD = KProgressHUD.create(mContext)
 //                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
 //                .setLabel("请等待...")
@@ -115,7 +115,7 @@ public abstract class IBaseActivity extends FragmentActivity {
 //                .setAnimationSpeed(2)
 //                .setDimAmount(0.6f)
 //                .show();
-//    }
+   }
 
     /**
      * 自定义标题的滚动条开始
@@ -134,10 +134,10 @@ public abstract class IBaseActivity extends FragmentActivity {
     /**
      * 滚动条关闭
      */
-//    public void dismissProgress() {
+    public void dismissProgress() {
 //        if (mKProgressHUD != null) {
 //            mKProgressHUD.dismiss();
 //            mKProgressHUD = null;
 //        }
-//    }
+    }
 }

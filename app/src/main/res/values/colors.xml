@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="reader_menu_bg_color">#191919</color>
+    <color name="text_font_color_grey">#737373</color><!-- 默认灰色文字颜色 -->
+    <color name="page_normal_bg">#EEEEEE</color><!--默认页面背景-->
+    <color name="page_white_bg">#FFF</color><!--白色页面背景-->
 </resources>

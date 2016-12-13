@@ -1,13 +1,14 @@
 package yueshenginfo.com.mynovel.module.home.model;
 
 /**
- * Created by huchao on 2016/12/5.
+ * Created by huchao on 2016/12/6.
  * Email 1064224874@qq.com
  */
 public interface BookContentModel {
     /**
-     * 书籍内容
-     * @param object
+     * 书的某一章内容
+     * @param params
+     * @param obj
      */
-    public void getBookContent(Object object,Object obj);
+    public void getBookContent(Object params, Object obj);
 }

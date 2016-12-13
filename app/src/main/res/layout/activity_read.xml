@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/read_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/read_layout"
     android:background="@drawable/theme_leather_bg"
     tools:context="yueshenginfo.com.mynovel.module.home.activity.ReadActivity">
-<FrameLayout
-    android:id="@+id/read_content_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/read_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="这是Title" />
+
+
     <LinearLayout
-        android:visibility="gone"
+
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/reader_menu_bg_color">
+        android:background="@color/reader_menu_bg_color"
+        android:visibility="gone">
 
     </LinearLayout>
 
