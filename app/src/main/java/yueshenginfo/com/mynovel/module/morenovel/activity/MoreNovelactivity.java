@@ -101,7 +101,6 @@ public class MoreNovelactivity extends IBaseActivity implements BooksView {
         params.put("major", category);//major代表玄幻等种类
         params.put("limit", 5);//limit代表pagesize
         params.put("start", 0);//start代表从那个item开始
-        Log.e("nicai", params.toString());
         mBooksPresenter.getBooks(params);
     }
 
