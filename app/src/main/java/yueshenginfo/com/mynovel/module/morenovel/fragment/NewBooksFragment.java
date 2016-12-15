@@ -1,12 +1,16 @@
 package yueshenginfo.com.mynovel.module.morenovel.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.liaoinstan.springview.container.DefaultFooter;
+import com.liaoinstan.springview.widget.SpringView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -20,7 +24,7 @@ import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.dto.CategoryEvent;
 import yueshenginfo.com.mynovel.module.morenovel.adapter.MoreNovelAdapter;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
-import yueshenginfo.com.mynovel.module.morenovel.presenter.BooksPresenter;
+import yueshenginfo.com.mynovel.module.morenovel.dto.RefushLoadmoreEvent;
 
 /**
  * Created by huchao on 2016/12/9.
@@ -31,12 +35,12 @@ public class NewBooksFragment extends IBaseFragment {
     private MoreNovelAdapter mMoreNovelAdapter;
     private List<BooksDto.BooksVO> mBooksVOArrayList;
 
-    private BooksPresenter mBooksPresenter;
+    private SpringView mSpringView;
+    private int start;
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.more_novel_layout, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.more_novel_rv);
         return view;
     }
 
@@ -44,6 +48,8 @@ public class NewBooksFragment extends IBaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mSpringView = getViewById(R.id.springview);
+        mRecyclerView = getViewById(R.id.more_novel_rv);
         initViews();
         initDatas();
         EventBus.getDefault().register(this);
@@ -51,16 +57,16 @@ public class NewBooksFragment extends IBaseFragment {
 
     @Override
     public void initViews() {
-//        mBooksPresenter = new BooksPresenter(this);
+        start=0;
         mBooksVOArrayList = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mMoreNovelAdapter = new MoreNovelAdapter(mContext, mBooksVOArrayList);
         mRecyclerView.setAdapter(mMoreNovelAdapter);
+        initRefushLoadmore();
     }
 
     @Override
     public void initDatas() {
-//        getBooksMore();
     }
 
     @Override
@@ -71,30 +77,44 @@ public class NewBooksFragment extends IBaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void event(CategoryEvent mCategoryEvent) {
-        mBooksVOArrayList.clear();
+        if (mCategoryEvent.flag==0){
+            mBooksVOArrayList.clear();
+        }
         for (BooksDto.BooksVO mBooksVO : mCategoryEvent.mBooksDto) {
             mBooksVOArrayList.add(mBooksVO);
         }
         mMoreNovelAdapter.notifyDataSetChanged();
     }
 
-//    private void getBooksMore() {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("gender", "male");//gender代表男性还是女性
-//        params.put("type", "new");//type代表热门。完结等
-//        params.put("major", "玄幻");//major代表玄幻等种类
-//        params.put("limit", 5);//limit代表pagesize
-//        params.put("start", 0);//start代表从那个item开始
-//        Log.e("nicai", params.toString());
-//        mBooksPresenter.getBooks(params);
-//    }
-//
-//    @Override
-//    public void getBooksResult(boolean isOk, BooksDto booksVO) {
-//        if (isOk) {
-//            mBooksVOArrayList.addAll(booksVO.getBooks());
-//        }
-//        mMoreNovelAdapter.notifyDataSetChanged();
-//    }
+    /**
+     * 上啦加载更多下拉刷新
+     */
+    private void initRefushLoadmore() {
+        mSpringView.setType(SpringView.Type.FOLLOW);
+        mSpringView.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSpringView.onFinishFreshAndLoad();
+                    }
+                }, 500);
+            }
+
+            @Override
+            public void onLoadmore() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        start += 20;
+                        EventBus.getDefault().post(new RefushLoadmoreEvent(start));
+                        mSpringView.onFinishFreshAndLoad();
+                    }
+                }, 500);
+            }
+        });
+        mSpringView.setFooter(new DefaultFooter(mContext));
+    }
 
 }

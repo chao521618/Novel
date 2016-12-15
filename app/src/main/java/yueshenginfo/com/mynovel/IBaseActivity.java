@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import yueshenginfo.com.mynovel.publics.utils.EmptyUtils;
 
 
@@ -25,7 +27,7 @@ public abstract class IBaseActivity extends FragmentActivity {
 
     protected IBaseApplication mApplication;
 
-    //protected KProgressHUD mKProgressHUD;
+    protected KProgressHUD mKProgressHUD;
 
     /**
      * onCreate
@@ -107,14 +109,15 @@ public abstract class IBaseActivity extends FragmentActivity {
      * 滚动条开始
      */
     public void showProgress() {
-        // 滚动条
-//        mKProgressHUD = KProgressHUD.create(mContext)
-//                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-//                .setLabel("请等待...")
-//                .setCancellable(true)
-//                .setAnimationSpeed(2)
-//                .setDimAmount(0.6f)
-//                .show();
+         //滚动条
+        mKProgressHUD = KProgressHUD.create(mContext)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setWindowColor((R.color.colorAccent))
+                .setLabel("拼命加载中..")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.6f)
+                .show();
    }
 
     /**
@@ -135,9 +138,9 @@ public abstract class IBaseActivity extends FragmentActivity {
      * 滚动条关闭
      */
     public void dismissProgress() {
-//        if (mKProgressHUD != null) {
-//            mKProgressHUD.dismiss();
-//            mKProgressHUD = null;
-//        }
+        if (mKProgressHUD != null) {
+            mKProgressHUD.dismiss();
+            mKProgressHUD = null;
+        }
     }
 }

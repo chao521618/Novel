@@ -56,4 +56,8 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     //EventBus
     compile 'org.greenrobot:eventbus:3.0.0'
+    //上拉下拉加载库
+    compile 'com.liaoinstan.springview:library:1.2.6'
+    //进度条
+    compile 'com.kaopiz:kprogresshud:1.0.5'
 }

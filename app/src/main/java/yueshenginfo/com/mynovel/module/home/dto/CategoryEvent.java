@@ -10,8 +10,10 @@ import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
  */
 public class CategoryEvent {
     public List<BooksDto.BooksVO> mBooksDto;
+    public int flag;
 
-    public CategoryEvent(List<BooksDto.BooksVO> mBooksDto) {
+    public CategoryEvent(List<BooksDto.BooksVO> mBooksDto, int flag) {
         this.mBooksDto = mBooksDto;
+        this.flag = flag;
     }
 }

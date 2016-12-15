@@ -8,6 +8,7 @@ import java.util.Map;
 
 import yueshenginfo.com.mynovel.module.home.dto.BookChapterDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookContentDto;
+import yueshenginfo.com.mynovel.module.home.dto.BookRecommendDto;
 import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
 import yueshenginfo.com.mynovel.publics.common.Constants;
@@ -82,6 +83,19 @@ public class RequestManager {
                 listener, errorListener);
         /** 添加标签 **/
         request.setTag(Constants.RequestTag.GetBooksMoreTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+    /**
+     * 获取首页推荐图书
+     */
+    public void requestHomeRecommendBooks(Map<String, Object> params,
+                                          Response.Listener<BookRecommendDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<BookRecommendDto> request = new RequestGet<>(returnGetUrl1(
+                Constants.ServiceInterFace.GetBooksRecommendUrl, params), BookRecommendDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetBooksRecommendTag);
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }

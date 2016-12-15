@@ -32,9 +32,10 @@ public class BooksFragment extends IBaseFragment implements BooksCategoryView {
     private ArrayList<BooksCategoryDto.MaleVO> mMaleVOArrayList;
     private BooksCategoryPresenter mBooksCategoryPresenter;
 
+
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
-        View view = inflater.inflate(R.layout.books_fragment_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_books, container, false);
         return view;
     }
 
@@ -48,6 +49,7 @@ public class BooksFragment extends IBaseFragment implements BooksCategoryView {
 
     @Override
     public void initViews() {
+        setTitle("Reader");
         mMaleVOArrayList = new ArrayList<>();
         mBooksCategoryPresenter = new BooksCategoryPresenter(this);
         //RecyclerView的布局管理器以及绑定adapter
@@ -71,21 +73,13 @@ public class BooksFragment extends IBaseFragment implements BooksCategoryView {
         mBooksAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void dismissProgress() {
-
-    }
-
+    /**
+     * RecyclerView的item的点击事件
+     */
     private void initRecyclerOnclickListener() {
         mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
             @Override
             public void SimpleOnItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-
                 Intent intent = new Intent(mContext, MoreNovelactivity.class);
                 intent.putExtra("category", mMaleVOArrayList.get(i).getName());
                 startActivity(intent);

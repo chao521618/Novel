@@ -14,4 +14,5 @@ public interface BooksView extends IBaseView {
      * @param booksVO
      */
     public void getBooksResult(boolean isOk, BooksDto booksVO);
+
 }

@@ -1,7 +1,5 @@
 package yueshenginfo.com.mynovel.module.morenovel.model.impl;
 
-import android.util.Log;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
@@ -20,23 +18,23 @@ public class BooksModelImpl extends IBaseModel implements BooksModel {
     private BooksInterface mBooksInterface;
 
     @Override
-    public void getBooks(Map<String, Object> params, Object obj) {
-        Log.e("params", String.valueOf(params));
+    public void getBooks(Map<String, Object> params, Object obj ) {
         mBooksInterface = (BooksInterface) obj;
-        mRequestManager.requestBooksMore(params, new Response.Listener<BooksDto>() {
-            @Override
-            public void onResponse(BooksDto booksVO) {
-                if (booksVO.isOk()) {
-                    mBooksInterface.getBooksResult(true, booksVO);
-                } else {
-                    mBooksInterface.getBooksResult(false, booksVO);
+            mRequestManager.requestBooksMore(params, new Response.Listener<BooksDto>() {
+                @Override
+                public void onResponse(BooksDto booksVO) {
+                    if (booksVO.isOk()) {
+                        mBooksInterface.getBooksResult(true, booksVO);
+                    } else {
+                        mBooksInterface.getBooksResult(false, booksVO);
+                    }
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                mBooksInterface.getBooksResult(false, null);
-            }
-        });
-    }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    mBooksInterface.getBooksResult(false, null);
+                }
+            });
+        }
+
 }

@@ -27,11 +27,17 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import yueshenginfo.com.mynovel.IBaseFragment;
 import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.activity.ReadActivity;
 import yueshenginfo.com.mynovel.module.home.adapter.BookShelfAdapter;
-import yueshenginfo.com.mynovel.publics.common.DataProvider;
+import yueshenginfo.com.mynovel.module.home.dto.BookRecommendDto;
+import yueshenginfo.com.mynovel.module.home.presenter.BooksRecommendPresenter;
+import yueshenginfo.com.mynovel.module.home.view.BooksRecommendView;
 import yueshenginfo.com.mynovel.publics.utils.T;
 import yueshenginfo.com.mynovel.publics.utils.Utils;
 
@@ -39,7 +45,7 @@ import yueshenginfo.com.mynovel.publics.utils.Utils;
  * Created by huchao on 2016/11/30.
  * Email 1064224874@qq.com
  */
-public class BookShelfFragment extends IBaseFragment {
+public class BookShelfFragment extends IBaseFragment implements BooksRecommendView {
     private ImageView mImageView;
     private LoopRotarySwitchView mLoopRotarySwitchView;
     private FrameLayout mFrameLayout;
@@ -47,10 +53,12 @@ public class BookShelfFragment extends IBaseFragment {
     private BookShelfAdapter mBookShelfAdapter;
     private PopupWindow mPopupWindow;
     private View mView;
+    private BooksRecommendPresenter mBooksRecommendPresenter;
+    private ArrayList<BookRecommendDto.BooksVO> mBooksVOArrayList;
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
-        mView = inflater.inflate(R.layout.bookshelf_fragment_layout, container, false);
+        mView = inflater.inflate(R.layout.fragment_bookshelf, container, false);
         return mView;
     }
 
@@ -69,15 +77,17 @@ public class BookShelfFragment extends IBaseFragment {
 
     @Override
     public void initViews() {
-        setTitle("电码阅读");
+        setTitle("Reader");
         rotate3D();
+        mBooksRecommendPresenter = new BooksRecommendPresenter(this);
+        mBooksVOArrayList = new ArrayList<>();
         //Top书籍的宽度设置
         int width = Utils.getScreenWidth(mContext);
         mFrameLayout.setLayoutParams(new LinearLayout.LayoutParams(width, width * 4 / 9));
         mLoopRotarySwitchView.setLayoutParams(new FrameLayout.LayoutParams(width * 2 / 5, width * 3 / 9));
         //RecyclerView初始化
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
-        mBookShelfAdapter = new BookShelfAdapter(mContext, DataProvider.bookShelf());
+        mBookShelfAdapter = new BookShelfAdapter(mContext, mBooksVOArrayList);
         View footerView = getView(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +101,7 @@ public class BookShelfFragment extends IBaseFragment {
 
     @Override
     public void initDatas() {
-
+        getHomeRecommmendBooks();
     }
 
     /**
@@ -206,10 +216,27 @@ public class BookShelfFragment extends IBaseFragment {
         mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                Intent mIntent=new Intent(mContext, ReadActivity.class);
+                Intent mIntent = new Intent(mContext, ReadActivity.class);
                 startActivity(mIntent);
             }
 
         });
+    }
+
+    /**
+     * 获取图书推荐
+     */
+    private void getHomeRecommmendBooks() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("gender", "male");//gender代表男性还是女性
+        mBooksRecommendPresenter.getBookRecommend(params);
+    }
+
+    @Override
+    public void getBooksReconnmendResult(boolean isOk, BookRecommendDto booksVO) {
+        if (isOk) {
+            mBooksVOArrayList.addAll(booksVO.getBooks());
+        }
+        mBookShelfAdapter.notifyDataSetChanged();
     }
 }

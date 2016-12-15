@@ -3,6 +3,7 @@ package yueshenginfo.com.mynovel.publics.common;
 import java.util.ArrayList;
 
 import yueshenginfo.com.mynovel.module.home.dto.BookShelfBean;
+import yueshenginfo.com.mynovel.module.home.dto.BooksBean;
 
 /**
  * Created by huchao on 2016/12/1.
@@ -23,5 +24,12 @@ public class DataProvider {
         mBookShelfBean.add(new BookShelfBean("http://img2.imgtn.bdimg.com/it/u=2370302811,891295877&fm=21&gp=0.jpg","斗罗大陆","未完结","已读83.2%"));
         mBookShelfBean.add(new BookShelfBean("http://img3.imgtn.bdimg.com/it/u=3228557436,21245517&fm=21&gp=0.jpg","斗罗大陆之无上之境","未完结","未读"));
         return mBookShelfBean;
+    }
+    public static ArrayList<BooksBean> books() {
+        ArrayList<BooksBean> mArrayList=new ArrayList<>();
+        mArrayList.add(new BooksBean("http://image.cmfu.com/books/2750457/2750457.jpg","大主宰"));
+        mArrayList.add(new BooksBean("http://image.cmfu.com/books/2750457/2750457.jpg","大主宰"));
+        mArrayList.add(new BooksBean("http://image.cmfu.com/books/2750457/2750457.jpg","大主宰"));
+        return mArrayList;
     }
 }

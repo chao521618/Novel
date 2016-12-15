@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import yueshenginfo.com.mynovel.publics.utils.EmptyUtils;
 
 
@@ -25,7 +27,7 @@ public abstract class IBaseFragment extends Fragment {
     protected Context mContext;
     private View rootView;
 
-    //protected KProgressHUD mKProgressHUD;
+    protected KProgressHUD mKProgressHUD;
 
     /**
      * onCreate
@@ -120,14 +122,14 @@ public abstract class IBaseFragment extends Fragment {
      * 方法功能
      */
     public void showProgress() {
-//        // 滚动条
-//        mKProgressHUD = KProgressHUD.create(mContext)
-//                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-//                .setLabel("请等待...")
-//                .setCancellable(true)
-//                .setAnimationSpeed(2)
-//                .setDimAmount(0.6f)
-//                .show();
+        // 滚动条
+        mKProgressHUD = KProgressHUD.create(mContext)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("请等待...")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.6f)
+                .show();
    }
 
     /**
@@ -147,10 +149,10 @@ public abstract class IBaseFragment extends Fragment {
      * 方法功能
      */
     public void dismissProgress() {
-//        if (mKProgressHUD != null) {
-//            mKProgressHUD.dismiss();
-//            mKProgressHUD = null;
-//        }
+        if (mKProgressHUD != null) {
+            mKProgressHUD.dismiss();
+            mKProgressHUD = null;
+        }
     }
 //
 }

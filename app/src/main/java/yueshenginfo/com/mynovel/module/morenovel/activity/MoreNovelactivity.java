@@ -2,13 +2,14 @@ package yueshenginfo.com.mynovel.module.morenovel.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import yueshenginfo.com.mynovel.IBaseActivity;
 import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.dto.CategoryEvent;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
+import yueshenginfo.com.mynovel.module.morenovel.dto.RefushLoadmoreEvent;
 import yueshenginfo.com.mynovel.module.morenovel.fragment.HotBooksFragment;
 import yueshenginfo.com.mynovel.module.morenovel.fragment.NewBooksFragment;
 import yueshenginfo.com.mynovel.module.morenovel.fragment.OverFragment;
@@ -37,19 +39,23 @@ public class MoreNovelactivity extends IBaseActivity implements BooksView {
     public String category;
     private BooksPresenter mBooksPresenter;
     private String type;
+    private int start;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_novelactivity);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         initViews();
         initDatas();
     }
 
     @Override
     public void initViews() {
+        setTitle("书屋");
         type = "new";
+        start = 0;
         // SegmentTabLayout相关初始化以及数据绑定
         mFragmentArrayList = new ArrayList<>();
         mDecorView = getWindow().getDecorView();
@@ -65,16 +71,12 @@ public class MoreNovelactivity extends IBaseActivity implements BooksView {
             public void onTabSelect(int position) {
                 if (position == 0) {
                     type = "new";
-                    Log.e("nicai", "new");
                 } else if (position == 1) {
                     type = "hot";
-                    Log.e("nicai", "hot");
                 } else if (position == 2) {
                     type = "reputation";
-                    Log.e("nicai", "reputation");
                 } else if (position == 3) {
                     type = "over";
-                    Log.e("nicai", "over");
                 }
                 getBooksMore();
             }
@@ -94,20 +96,43 @@ public class MoreNovelactivity extends IBaseActivity implements BooksView {
 
     }
 
+    /**
+     * 获取更多的图书
+     */
+    // TODO: 2016/12/13   只做了男生图书
     private void getBooksMore() {
+        showProgress();
         Map<String, Object> params = new HashMap<>();
         params.put("gender", "male");//gender代表男性还是女性
         params.put("type", type);//type代表热门。完结等
         params.put("major", category);//major代表玄幻等种类
-        params.put("limit", 5);//limit代表pagesize
-        params.put("start", 0);//start代表从那个item开始
+        params.put("limit", 20);//limit代表pagesize
+        params.put("start", start);//start代表从那个item开始
         mBooksPresenter.getBooks(params);
     }
 
     @Override
     public void getBooksResult(boolean isOk, BooksDto booksVO) {
         if (isOk) {
-            EventBus.getDefault().post(new CategoryEvent(booksVO.getBooks()));
+            if (start == 0) {
+                EventBus.getDefault().post(new CategoryEvent(booksVO.getBooks(), start));
+            } else {
+                EventBus.getDefault().post(new CategoryEvent(booksVO.getBooks(), start));
+            }
+
         }
+        dismissProgress();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void RefushLoadmoreEvent(RefushLoadmoreEvent mRefushLoadmoreEvent) {
+        start = mRefushLoadmoreEvent.start;
+        getBooksMore();
     }
 }

@@ -34,4 +34,9 @@ public class BooksPresenter extends IBasePresenter<BooksView> implements BooksIn
     public void getBooksResult(boolean isOk, BooksDto booksVO) {
         getView().getBooksResult(isOk, booksVO);
     }
+//
+//    @Override
+//    public void getBooksRecommendResult(boolean isOk, BookRecommendDto booksVO) {
+//      getView().getBooksReconnmendResult(isOk,booksVO);
+//    }
 }
