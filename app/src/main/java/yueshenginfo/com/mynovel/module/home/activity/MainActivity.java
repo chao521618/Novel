@@ -16,6 +16,7 @@ import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.dto.TabEntity;
 import yueshenginfo.com.mynovel.module.home.fragment.BookShelfFragment;
 import yueshenginfo.com.mynovel.module.home.fragment.BooksFragment;
+import yueshenginfo.com.mynovel.module.home.fragment.SearchFragment;
 
 public class MainActivity extends IBaseActivity {
     @Bind(R.id.fl_change)
@@ -56,7 +57,7 @@ public class MainActivity extends IBaseActivity {
         }
         fragmentList.add(new BookShelfFragment());
         fragmentList.add(new BooksFragment());
-        fragmentList.add(new BookShelfFragment());
+        fragmentList.add(new SearchFragment());
         fragmentList.add(new BookShelfFragment());
         fragmentList.add(new BookShelfFragment());
         tablayout.setTabData(mArrayList, this, R.id.fl_change, fragmentList);

@@ -18,6 +18,7 @@ public class Constants {
         public static String GetBooksCategoryUrl = BaseUrl+"/cats/lv2";
         public static String GetBooksMoreUrl = BaseUrl+"/book/by-categories";
         public static String GetBooksRecommendUrl = BaseUrl+"/book/recommend";
+        public static String GetAllLookBooksUrl = BaseUrl+"/book/hot-word";
     }
 
     /**
@@ -29,5 +30,6 @@ public class Constants {
         public static final int GetBooksCategoryTag = 1003;
         public static final int GetBooksMoreTag = 1004;
         public static final int GetBooksRecommendTag = 1005;
+        public static final int GetAllLookBooksTag = 1006;
     }
 }

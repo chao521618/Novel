@@ -6,6 +6,7 @@ import com.android.volley.Response;
 
 import java.util.Map;
 
+import yueshenginfo.com.mynovel.module.home.dto.AllLookBooksDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookChapterDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookContentDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookRecommendDto;
@@ -96,6 +97,19 @@ public class RequestManager {
                 listener, errorListener);
         /** 添加标签 **/
         request.setTag(Constants.RequestTag.GetBooksRecommendTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+    /**
+     * 获取大家都在看的书
+     */
+    public void requestAllLookBooks(Map<String, Object> params,
+                                          Response.Listener<AllLookBooksDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<AllLookBooksDto> request = new RequestGet<>(returnGetUrl1(
+                Constants.ServiceInterFace.GetAllLookBooksUrl, params), AllLookBooksDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetAllLookBooksTag);
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
