@@ -67,8 +67,4 @@ public class MainActivity extends IBaseActivity {
     public void initDatas() {
     }
 
-    private void initAdapter() {
-
-    }
-
 }
