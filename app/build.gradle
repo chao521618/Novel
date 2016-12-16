@@ -41,7 +41,7 @@ dependencies {
     //3D旋转
     compile 'com.dalong:loopview:1.0.2'
     //Recyclerview的Adapter
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.2.0'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.1.3'
     //Dialogplus
     compile 'com.orhanobut:dialogplus:1.11@aar'
     //butterknife注解框架
