@@ -32,4 +32,12 @@ public class AllLookBooksDto {
     public void setHotWords(List<String> hotWords) {
         this.hotWords = hotWords;
     }
+
+    @Override
+    public String toString() {
+        return "AllLookBooksDto{" +
+                "ok=" + ok +
+                ", hotWords=" + hotWords +
+                '}';
+    }
 }

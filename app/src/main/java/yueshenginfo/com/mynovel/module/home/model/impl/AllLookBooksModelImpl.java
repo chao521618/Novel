@@ -20,20 +20,23 @@ public class AllLookBooksModelImpl extends IBaseModel implements AllLookBooksMod
     @Override
     public void getAllLookBooks(Map<String, Object> params, Object object) {
         mAllLookBooksInterface = (AllLookBooksInterface) object;
-        mRequestManager.requestAllLookBooks(params, new Response.Listener<AllLookBooksDto>() {
-            @Override
-            public void onResponse(AllLookBooksDto mAllLookBooksDto) {
-                if (mAllLookBooksDto.isOk()) {
-                    mAllLookBooksInterface.getAllLookBooksResult(true, mAllLookBooksDto);
-                } else {
-                    mAllLookBooksInterface.getAllLookBooksResult(false, mAllLookBooksDto);
+            mRequestManager.requestAllLookBooks(params, new Response.Listener<AllLookBooksDto>() {
+                @Override
+                public void onResponse(AllLookBooksDto mAllLookBooksDto) {
+                    if (mAllLookBooksDto.isOk()) {
+                        mAllLookBooksInterface.getAllLookBooksResult(true, mAllLookBooksDto);
+                    } else {
+                        mAllLookBooksInterface.getAllLookBooksResult(false, mAllLookBooksDto);
+                    }
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                mAllLookBooksInterface.getAllLookBooksResult(false, null);
-            }
-        });
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    mAllLookBooksInterface.getAllLookBooksResult(false, null);
+                }
+            });
+//        }
+//        if (flag==1){
+
     }
 }

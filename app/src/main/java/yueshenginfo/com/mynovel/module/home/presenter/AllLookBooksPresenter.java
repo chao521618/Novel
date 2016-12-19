@@ -33,4 +33,6 @@ public class AllLookBooksPresenter extends IBasePresenter<AllLookBooksView> impl
     public void getAllLookBooks(Map<String, Object> params) {
         mAllLookBooksModel.getAllLookBooks(params, AllLookBooksPresenter.this);
     }
+
+
 }

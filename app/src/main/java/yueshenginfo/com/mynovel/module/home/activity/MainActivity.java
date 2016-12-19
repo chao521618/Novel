@@ -65,6 +65,7 @@ public class MainActivity extends IBaseActivity {
 
     @Override
     public void initDatas() {
+
     }
 
 }

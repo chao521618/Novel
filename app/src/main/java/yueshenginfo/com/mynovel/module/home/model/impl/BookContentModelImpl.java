@@ -25,7 +25,6 @@ public class BookContentModelImpl extends IBaseModel implements BookContentModel
                     mBookContentInterface.getBookContentResult(true, bookContentDto);
                 } else {
                     mBookContentInterface.getBookContentResult(false, bookContentDto);
-
                 }
             }
         }, new Response.ErrorListener() {
