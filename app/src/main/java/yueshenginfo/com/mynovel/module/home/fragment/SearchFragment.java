@@ -3,18 +3,20 @@ package yueshenginfo.com.mynovel.module.home.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -22,11 +24,13 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import yueshenginfo.com.mynovel.IBaseFragment;
 import yueshenginfo.com.mynovel.R;
+import yueshenginfo.com.mynovel.module.home.adapter.HistoryAdapter;
 import yueshenginfo.com.mynovel.module.home.adapter.ListPopAdapter;
 import yueshenginfo.com.mynovel.module.home.dto.AllLookBooksDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
@@ -35,6 +39,7 @@ import yueshenginfo.com.mynovel.module.home.presenter.SearchWordsPresenter;
 import yueshenginfo.com.mynovel.module.home.view.AllLookBooksView;
 import yueshenginfo.com.mynovel.module.home.view.SearchWordsView;
 import yueshenginfo.com.mynovel.module.search.activity.SearchResultActivty;
+import yueshenginfo.com.mynovel.publics.common.MessageInfo;
 import yueshenginfo.com.mynovel.publics.utils.EmptyUtils;
 import yueshenginfo.com.mynovel.publics.utils.T;
 
@@ -55,6 +60,9 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
     private ListPopAdapter mListPopAdapter;
     private ImageView iv_delete;
     private TextView tv_seach;
+    private RecyclerView rv_histroy;
+    private List<String> mList;
+    private HistoryAdapter mHistoryAdapter;
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
@@ -71,6 +79,7 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         mEditText = getViewById(R.id.et_seach);
         iv_delete = getViewById(R.id.iv_delete);
         tv_seach = getViewById(R.id.tv_seach);
+        rv_histroy = getViewById(R.id.rv_histroy);
         initViews();
         initDatas();
     }
@@ -79,10 +88,15 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
     public void initViews() {
         mArrayList = new ArrayList<>();
         mPopArrayList = new ArrayList<>();
+        mList = new ArrayList<>();
         mAllLookBooksPresenter = new AllLookBooksPresenter(this);
         mSearchWordsPresenter = new SearchWordsPresenter(this);
         initFlowLayout();
+        //点击事件
         mLinearLayout.setOnClickListener(this);
+        iv_delete.setOnClickListener(this);
+        tv_seach.setOnClickListener(this);
+
         initListPopupWindow();
         //getSearchWord();
 //        for (int i=0;i<10;i++){
@@ -113,9 +127,10 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
             @Override
             public void afterTextChanged(Editable s) {
                 if (EmptyUtils.isNotEmpty(mEditText.getText().toString())) {
+
                     getSearchWord();
                     mListPopupWindow.show();
-
+                    iv_delete.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -177,10 +192,22 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
                 getAllLookBooks();
                 break;
             case R.id.iv_delete:
-                mEditText.getText().clear();
+                mEditText.setText("");
+                break;
             case R.id.tv_seach:
-                Intent mIntent = new Intent(mContext, SearchResultActivty.class);
-                startActivity(mIntent);
+                if (EmptyUtils.isNotEmpty(mEditText.getText().toString())) {
+                    Intent mIntent = new Intent(mContext, SearchResultActivty.class);
+                    mIntent.putExtra("query", mEditText.getText().toString());
+                    startActivity(mIntent);
+                } else {
+                    T.showShort(mContext, "请输入搜索内容");
+                }
+                mList.add(mEditText.getText().toString());
+                if (mList.size()-1==0){
+
+                }
+                MessageInfo.setHistorySearch(mContext, mEditText.getText().toString());
+
                 break;
 
         }
@@ -195,16 +222,26 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         mListPopupWindow.setModal(true);
         mListPopupWindow.setWidth(ListPopupWindow.WRAP_CONTENT);
         mListPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
+        mListPopupWindow.setInputMethodMode(mListPopupWindow.INPUT_METHOD_NEEDED);
+        mListPopupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         mListPopAdapter = new ListPopAdapter(mContext, mPopArrayList);
         mListPopupWindow.setAdapter(mListPopAdapter);
         mListPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(mContext, mPopArrayList.get(position), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, mPopArrayList.get(position), Toast.LENGTH_SHORT).show();
+                mEditText.setText(mPopArrayList.get(position));
                 mListPopupWindow.dismiss();
             }
         });
     }
+
+    private void initRecyclerView() {
+        rv_histroy.setLayoutManager(new LinearLayoutManager(mContext));
+        mHistoryAdapter = new HistoryAdapter(mContext, mList);
+        rv_histroy.setAdapter(mHistoryAdapter);
+    }
+
 
     /**
      * 获取搜索关键词
@@ -225,4 +262,5 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
             mListPopAdapter.notifyDataSetChanged();
         }
     }
+
 }

@@ -13,6 +13,7 @@ import yueshenginfo.com.mynovel.module.home.dto.BookRecommendDto;
 import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
+import yueshenginfo.com.mynovel.module.search.dto.SeachBooksDto;
 import yueshenginfo.com.mynovel.publics.common.Constants;
 import yueshenginfo.com.mynovel.publics.utils.EmptyUtils;
 
@@ -124,6 +125,19 @@ public class RequestManager {
                 listener, errorListener);
         /** 添加标签 **/
         request.setTag(Constants.RequestTag.GetSearchWordsTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+    /**
+     * 获取搜索页面
+     */
+    public void requestSearchResult(Map<String, Object> params,
+                                   Response.Listener<SeachBooksDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<SeachBooksDto> request = new RequestGet<>(returnGetUrl1(
+                Constants.ServiceInterFace.GetSearchResultUrl, params), SeachBooksDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetSearchResultTag);
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }

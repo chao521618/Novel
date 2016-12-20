@@ -33,36 +33,4 @@ public class BooksAdapter extends BaseQuickAdapter<BooksCategoryDto.MaleVO> {
         baseViewHolder.addOnClickListener(R.id.book_more);
 
     }
-//
-//    private void initView() {
-////        maBooksVOArrayList = new ArrayList<>();
-////        mBooksPresenter = new BooksPresenter(this);
-//    }
-
-//    private void getBook() {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("gender", "male");//gender代表男性还是女性
-//        params.put("type", "hot");//type代表热门。完结等
-//        params.put("major", category);//major代表玄幻等种类
-//        params.put("limit", 3);//limit代表pagesize
-//        params.put("start", 0);//start代表从那个item开始
-//        mBooksPresenter.getBooks(params);
-//    }
-
-//    @Override
-//    public void getBooksResult(boolean isOk, BooksDto booksVO) {
-//        if (isOk) {
-//            maBooksVOArrayList.addAll(booksVO.getBooks());
-//        }
-//    }
-//
-//    @Override
-//    public void showProgress() {
-//
-//    }
-//
-//    @Override
-//    public void dismissProgress() {
-//
-//    }
 }

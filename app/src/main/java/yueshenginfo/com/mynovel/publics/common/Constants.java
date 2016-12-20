@@ -6,6 +6,9 @@ package yueshenginfo.com.mynovel.publics.common;
  */
 
 public class Constants {
+   public static  String MessageInfo="MessageInfo";
+   public static  String HistorySearch="HistorySearch";
+
     /**
      *
      */
@@ -20,6 +23,7 @@ public class Constants {
         public static String GetBooksRecommendUrl = BaseUrl+"/book/recommend";
         public static String GetAllLookBooksUrl = BaseUrl+"/book/hot-word";
         public static String GetSearchWordsUrl = BaseUrl+"/book/auto-complete";
+        public static String GetSearchResultUrl = BaseUrl+"/book/fuzzy-search";
     }
 
     /**
@@ -33,5 +37,6 @@ public class Constants {
         public static final int GetBooksRecommendTag = 1005;
         public static final int GetAllLookBooksTag = 1006;
         public static final int GetSearchWordsTag = 1007;
+        public static final int GetSearchResultTag = 1008;
     }
 }
