@@ -24,6 +24,7 @@ public class Constants {
         public static String GetAllLookBooksUrl = BaseUrl+"/book/hot-word";
         public static String GetSearchWordsUrl = BaseUrl+"/book/auto-complete";
         public static String GetSearchResultUrl = BaseUrl+"/book/fuzzy-search";
+        public static String GetBookDetailUrl = BaseUrl+"/book";
     }
 
     /**
@@ -38,5 +39,6 @@ public class Constants {
         public static final int GetAllLookBooksTag = 1006;
         public static final int GetSearchWordsTag = 1007;
         public static final int GetSearchResultTag = 1008;
+        public static final int GetBookDetailTag = 1009;
     }
 }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/page_white_bg"
     tools:context="yueshenginfo.com.mynovel.module.search.activity.SearchResultActivty">
     <include layout="@layout/layout_title"/>
 <android.support.v7.widget.RecyclerView

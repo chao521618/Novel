@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".module.home.activity.ReadActivity" />
         <activity android:name=".module.morenovel.activity.MoreNovelactivity" />
-        <activity android:name=".module.search.activity.SearchResultActivty"></activity>
+        <activity android:name=".module.search.activity.SearchResultActivty" />
+        <activity android:name=".module.bookdetail.activity.BookDetailActivity"></activity>
     </application>
 
 </manifest>

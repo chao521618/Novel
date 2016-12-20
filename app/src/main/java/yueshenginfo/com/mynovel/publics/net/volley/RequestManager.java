@@ -1,11 +1,10 @@
 package yueshenginfo.com.mynovel.publics.net.volley;
 
-import android.util.Log;
-
 import com.android.volley.Response;
 
 import java.util.Map;
 
+import yueshenginfo.com.mynovel.module.bookdetail.dto.BookDetailDto;
 import yueshenginfo.com.mynovel.module.home.dto.AllLookBooksDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookChapterDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookContentDto;
@@ -141,6 +140,19 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+    /**
+     * 获取书籍详情
+     */
+    public void requestBookDetail(Object object,
+                                    Response.Listener<BookDetailDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<BookDetailDto> request = new RequestGet<>(returnGetUrl(
+                Constants.ServiceInterFace.GetBookDetailUrl, object), BookDetailDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetBookDetailTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
     // --------------------以上是请求---------------------------------------
 
     /**
@@ -192,7 +204,6 @@ public class RequestManager {
      * @return
      */
     private static String returnGetPara(Map<String, Object> params) {
-        Log.e("params1", String.valueOf(params));
         StringBuffer sb = new StringBuffer();
         for (String key : params.keySet()) {
             String value = params.get(key).toString();

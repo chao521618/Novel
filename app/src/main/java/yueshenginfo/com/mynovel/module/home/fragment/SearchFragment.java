@@ -98,7 +98,6 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         tv_seach.setOnClickListener(this);
 
         initListPopupWindow();
-        //getSearchWord();
 //        for (int i=0;i<10;i++){
 //            mPopArrayList.add(String.valueOf(i));
 //        }
@@ -156,7 +155,10 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         mTagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                T.showShort(mContext, mArrayList.get(position));
+               // T.showShort(mContext, mArrayList.get(position));
+                Intent mIntent=new Intent(mContext, SearchResultActivty.class);
+                mIntent.putExtra("query",mArrayList.get(position));
+                startActivity(mIntent);
                 return true;
             }
         });

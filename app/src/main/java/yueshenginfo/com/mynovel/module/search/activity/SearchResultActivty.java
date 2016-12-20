@@ -1,5 +1,6 @@
 package yueshenginfo.com.mynovel.module.search.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +17,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import yueshenginfo.com.mynovel.IBaseActivity;
 import yueshenginfo.com.mynovel.R;
+import yueshenginfo.com.mynovel.module.bookdetail.activity.BookDetailActivity;
 import yueshenginfo.com.mynovel.module.search.adapter.SearchResultAdapter;
 import yueshenginfo.com.mynovel.module.search.dto.SeachBooksDto;
 import yueshenginfo.com.mynovel.module.search.presenter.SearchResultPresenter;
 import yueshenginfo.com.mynovel.module.search.view.SearchResultView;
-import yueshenginfo.com.mynovel.publics.utils.T;
 
 public class SearchResultActivty extends IBaseActivity implements SearchResultView {
 
@@ -51,7 +52,10 @@ public class SearchResultActivty extends IBaseActivity implements SearchResultVi
         rv.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                T.showShort(mContext,mBooksVOsLists.get(i).getTitle());
+                Intent mIntent=new Intent(mContext, BookDetailActivity.class);
+                mIntent.putExtra("id",mBooksVOsLists.get(i).get_id());
+                startActivity(mIntent);
+                //T.showShort(mContext,mBooksVOsLists.get(i).getTitle());
             }
 
         });

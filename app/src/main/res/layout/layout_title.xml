@@ -18,6 +18,7 @@
             android:onClick="onBackPressed"
             android:paddingLeft="16dp"
             android:paddingRight="15dp"
+            android:src="@drawable/title_back"
            />
 
         <ImageView
