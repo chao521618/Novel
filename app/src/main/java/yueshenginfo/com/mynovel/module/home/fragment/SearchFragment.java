@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -59,7 +62,7 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
     private EditText mEditText;
     private ListPopAdapter mListPopAdapter;
     private ImageView iv_delete;
-    private TextView tv_seach;
+    private TextView tv_seach, tv_clear;
     private RecyclerView rv_histroy;
     private List<String> mList;
     private HistoryAdapter mHistoryAdapter;
@@ -80,6 +83,7 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         iv_delete = getViewById(R.id.iv_delete);
         tv_seach = getViewById(R.id.tv_seach);
         rv_histroy = getViewById(R.id.rv_histroy);
+        tv_clear = getViewById(R.id.tv_clear);
         initViews();
         initDatas();
     }
@@ -96,7 +100,7 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         mLinearLayout.setOnClickListener(this);
         iv_delete.setOnClickListener(this);
         tv_seach.setOnClickListener(this);
-
+        tv_clear.setOnClickListener(this);
         initListPopupWindow();
 //        for (int i=0;i<10;i++){
 //            mPopArrayList.add(String.valueOf(i));
@@ -133,6 +137,7 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
                 }
             }
         });
+
     }
 
     @Override
@@ -147,7 +152,8 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         mTagFlowLayout.setAdapter(new TagAdapter<String>(mArrayList) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
-                TextView mTextView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tv_words, parent, false);
+                TextView mTextView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tv_words, mTagFlowLayout, false);
+
                 mTextView.setText(s);
                 return mTextView;
             }
@@ -155,9 +161,8 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         mTagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-               // T.showShort(mContext, mArrayList.get(position));
-                Intent mIntent=new Intent(mContext, SearchResultActivty.class);
-                mIntent.putExtra("query",mArrayList.get(position));
+                Intent mIntent = new Intent(mContext, SearchResultActivty.class);
+                mIntent.putExtra("query", mArrayList.get(position));
                 startActivity(mIntent);
                 return true;
             }
@@ -184,7 +189,6 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
             }
             initFlowLayout();
         }
-
     }
 
     @Override
@@ -196,6 +200,12 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
             case R.id.iv_delete:
                 mEditText.setText("");
                 break;
+            case R.id.tv_clear:
+
+                MessageInfo.clean(mContext);
+                mList.clear();
+                mHistoryAdapter.notifyDataSetChanged();
+                break;
             case R.id.tv_seach:
                 if (EmptyUtils.isNotEmpty(mEditText.getText().toString())) {
                     Intent mIntent = new Intent(mContext, SearchResultActivty.class);
@@ -204,12 +214,30 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
                 } else {
                     T.showShort(mContext, "请输入搜索内容");
                 }
-                mList.add(mEditText.getText().toString());
-                if (mList.size()-1==0){
+                //如果sp中是空的，就保存第一条;else 不为空 拼接字符串存
+                if (EmptyUtils.isEmpty(MessageInfo.getHistorySearch(mContext))) {
+                    MessageInfo.setHistorySearch(mContext, mEditText.getText().toString());
+                } else {
+                    String[] strs = MessageInfo.getHistorySearch(mContext).split(",,");
+                    //首先查询sp中是否存在相同的内容
+                    boolean checkFlag = true;
+                    for (int i = 0; i < strs.length; i++) {
+                        if (strs[i].equals(mEditText.getText().toString())) {
+                            checkFlag = false;
+                        } else {
+                            checkFlag = true;
+                        }
+                    }
+                    if (checkFlag) {
+                        StringBuffer buffer = new StringBuffer();
+                        buffer.append(mEditText.getText().toString());
+                        buffer.append(",,");
+                        buffer.append(MessageInfo.getHistorySearch(mContext));
+                        String result = buffer.toString();
+                        MessageInfo.setHistorySearch(mContext, result);
+                    }
 
                 }
-                MessageInfo.setHistorySearch(mContext, mEditText.getText().toString());
-
                 break;
 
         }
@@ -238,10 +266,17 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         });
     }
 
+    //历史词
     private void initRecyclerView() {
         rv_histroy.setLayoutManager(new LinearLayoutManager(mContext));
         mHistoryAdapter = new HistoryAdapter(mContext, mList);
         rv_histroy.setAdapter(mHistoryAdapter);
+        rv_histroy.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                T.showShort(mContext,mList.get(i));
+            }
+        });
     }
 
 
@@ -265,4 +300,19 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //一进页面就查询sp中的历史词
+        mList.clear();
+        String[] strs = MessageInfo.getHistorySearch(mContext).split(",,");
+        for (int i = 0; i < strs.length; i++) {
+            Log.e("strs" + i, strs[i]);
+            mList.add(strs[i]);
+            Log.e("Mlist" + i, mList.get(i));
+        }
+
+        initRecyclerView();
+    }
 }
