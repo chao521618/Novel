@@ -3,8 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rv_review"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_review"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.liaoinstan.springview.widget.SpringView>
+
 </LinearLayout>
