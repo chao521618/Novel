@@ -10,4 +10,5 @@
 <color name="page_white_bg">#FFF</color><!--白色页面背景-->
 <color name="item_line_bg">#e4e3e3</color><!--item下划线的背景-->
 <color name="user_name_bg">#c9831c</color><!--书友的名字颜色-->
+<color name="text_black_bg">#2b2b2b</color><!--字体黑色-->
 </resources>

@@ -1,43 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="yueshenginfo.com.mynovel.module.review.activity.ItemReviewActivity">
 
-<LinearLayout
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <include layout="@layout/layout_title" />
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/sv_user_head"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_reader_ab_download"
-        fresco:placeholderImage="@drawable/img_user_default"
-        fresco:roundAsCircle="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:gravity="center_horizontal"
-        android:id="@+id/user_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/user_head"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/user_head">
-
-        <TextView
-            android:textColor="@color/user_name_bg"
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="名字" />
+            android:orientation="vertical">
 
-    </RelativeLayout>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sv_user_head"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    fresco:placeholderImage="@drawable/img_user_default"
+                    fresco:roundAsCircle="true" />
+
+                <RelativeLayout
+                    android:id="@+id/user_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/user_head"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/user_head"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/user_name_bg" />
+
+                    <TextView
+                        android:id="@+id/item_review_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_name"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textSize="11dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/review_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/text_black_bg" />
+
+            <TextView
+                android:id="@+id/review_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="7dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="5dp"
+                android:paddingTop="7dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/rv_like"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tv_like_num"
+                    android:scrollbars="none" />
+
+                <TextView
+                    android:id="@+id/tv_like_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/book_review_like_num" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/item_line_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="全部评论" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_review_floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

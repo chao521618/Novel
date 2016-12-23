@@ -1,5 +1,6 @@
 package yueshenginfo.com.mynovel.module.bookdetail.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +32,7 @@ import yueshenginfo.com.mynovel.module.bookdetail.presenter.BookDetailPresenter;
 import yueshenginfo.com.mynovel.module.bookdetail.presenter.BookDetailReviewPresenter;
 import yueshenginfo.com.mynovel.module.bookdetail.view.BookDetailReviewView;
 import yueshenginfo.com.mynovel.module.bookdetail.view.BookDetailView;
+import yueshenginfo.com.mynovel.module.review.activity.ItemReviewActivity;
 import yueshenginfo.com.mynovel.module.review.adapter.ReviewAdapter;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
 import yueshenginfo.com.mynovel.publics.common.Constants;
@@ -191,7 +193,9 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
         rvReview.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                T.showShort(mContext, mReviewsVOLists.get(i).getTitle());
+                Intent mIntent=new Intent(mContext,ItemReviewActivity.class);
+                mIntent.putExtra("id",mReviewsVOLists.get(i).get_id());
+                startActivity(mIntent);
             }
         });
     }

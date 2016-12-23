@@ -1,5 +1,7 @@
 package yueshenginfo.com.mynovel.publics.net.volley;
 
+import android.util.Log;
+
 import com.android.volley.Response;
 
 import java.util.Map;
@@ -13,6 +15,8 @@ import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
+import yueshenginfo.com.mynovel.module.review.dto.ReviewFloorDto;
+import yueshenginfo.com.mynovel.module.review.dto.UserReviewDto;
 import yueshenginfo.com.mynovel.module.search.dto.SeachBooksDto;
 import yueshenginfo.com.mynovel.publics.common.Constants;
 import yueshenginfo.com.mynovel.publics.utils.EmptyUtils;
@@ -37,6 +41,7 @@ public class RequestManager {
     private RequestManager() {
     }
     // -------------------------请求服务器的方法写在此下面---------------------------------------------
+
     /**
      * 获取书籍章节
      */
@@ -50,6 +55,7 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取书的某一章内容
      */
@@ -63,11 +69,12 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取书籍类别
      */
     public void requestBooksCategory(Object params,
-                                   Response.Listener<BooksCategoryDto> listener, Response.ErrorListener errorListener) {
+                                     Response.Listener<BooksCategoryDto> listener, Response.ErrorListener errorListener) {
         RequestGet<BooksCategoryDto> request = new RequestGet<>(returnGetUrl(
                 Constants.ServiceInterFace.GetBooksCategoryUrl, params), BooksCategoryDto.class,
                 listener, errorListener);
@@ -76,11 +83,12 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取书城中的更多
      */
-    public void requestBooksMore( Map<String, Object> params,
-                                     Response.Listener<BooksDto> listener, Response.ErrorListener errorListener) {
+    public void requestBooksMore(Map<String, Object> params,
+                                 Response.Listener<BooksDto> listener, Response.ErrorListener errorListener) {
         RequestGet<BooksDto> request = new RequestGet<>(returnGetUrl1(
                 Constants.ServiceInterFace.GetBooksMoreUrl, params), BooksDto.class,
                 listener, errorListener);
@@ -89,6 +97,7 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取首页推荐图书
      */
@@ -102,11 +111,12 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取大家都在看的书
      */
     public void requestAllLookBooks(Map<String, Object> params,
-                                          Response.Listener<AllLookBooksDto> listener, Response.ErrorListener errorListener) {
+                                    Response.Listener<AllLookBooksDto> listener, Response.ErrorListener errorListener) {
         RequestGet<AllLookBooksDto> request = new RequestGet<>(returnGetUrl1(
                 Constants.ServiceInterFace.GetAllLookBooksUrl, params), AllLookBooksDto.class,
                 listener, errorListener);
@@ -115,6 +125,7 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取搜索关键词
      */
@@ -128,11 +139,12 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取搜索页面
      */
     public void requestSearchResult(Map<String, Object> params,
-                                   Response.Listener<SeachBooksDto> listener, Response.ErrorListener errorListener) {
+                                    Response.Listener<SeachBooksDto> listener, Response.ErrorListener errorListener) {
         RequestGet<SeachBooksDto> request = new RequestGet<>(returnGetUrl1(
                 Constants.ServiceInterFace.GetSearchResultUrl, params), SeachBooksDto.class,
                 listener, errorListener);
@@ -141,11 +153,12 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取书籍详情
      */
     public void requestBookDetail(Object object,
-                                    Response.Listener<BookDetailDto> listener, Response.ErrorListener errorListener) {
+                                  Response.Listener<BookDetailDto> listener, Response.ErrorListener errorListener) {
         RequestGet<BookDetailDto> request = new RequestGet<>(returnGetUrl(
                 Constants.ServiceInterFace.GetBookDetailUrl, object), BookDetailDto.class,
                 listener, errorListener);
@@ -154,6 +167,7 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
     /**
      * 获取搜索页面
      */
@@ -167,6 +181,34 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
+    /**
+     * 获取用户详情评论
+     */
+    public void requestUsrDetailReview(Object object,
+                                       Response.Listener<UserReviewDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<UserReviewDto> request = new RequestGet<>(returnGetUrl(
+                Constants.ServiceInterFace.GetUserDetailReviewUrl, object), UserReviewDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetUserDetailReviewTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+
+    /**
+     * 获取评论楼层
+     */
+    public void requestReviewFloor(Map<String, Object> params,
+                                   Response.Listener<ReviewFloorDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<ReviewFloorDto> request = new RequestGet<>(returnGetUrl1(
+                Constants.ServiceInterFace.GetUserDetailReviewUrl, params), ReviewFloorDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetReviewFloorTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
     // --------------------以上是请求---------------------------------------
 
     /**
@@ -176,7 +218,7 @@ public class RequestManager {
      * @param map
      * @return
      */
-    public static String returnGetUrl(String url,Object map) {
+    public static String returnGetUrl(String url, Object map) {
         // 设置Get请求方式
         StringBuffer sb = new StringBuffer();
         String key = RequestManager.returnGetPara1(map);
@@ -184,6 +226,7 @@ public class RequestManager {
         sb.append(key);
         return sb.toString();
     }
+
     /**
      * 拼接请求
      *
@@ -195,12 +238,24 @@ public class RequestManager {
         // 设置Get请求方式
         StringBuffer sb = new StringBuffer();
         sb.append(url);
+        Log.e("params", String.valueOf(params.keySet()));
+        for (String key : params.keySet()) {
+
+            if (key.equals("idargs")) {
+                sb.append("/");
+                sb.append(params.get("idargs").toString());
+                sb.append("/comment");
+            }
+        }
         sb.append("?");
+
         sb.append(returnGetPara(params));
         return sb.toString();
     }
+
     /**
      * 拼接请求参数
+     *
      * @param param
      * @return
      */
@@ -209,8 +264,9 @@ public class RequestManager {
         for (Object o : param) {
             key += "/" + o;
         }
-        return key.replaceFirst("-","");
+        return key.replaceFirst("-", "");
     }
+
     /**
      * 拼接请求参数
      *
@@ -220,11 +276,15 @@ public class RequestManager {
     private static String returnGetPara(Map<String, Object> params) {
         StringBuffer sb = new StringBuffer();
         for (String key : params.keySet()) {
-            String value = params.get(key).toString();
+            if (key.equals("idargs")) {
+
+            } else{
+                String value = params.get(key).toString();
             sb.append(key);
             sb.append("=");
             sb.append(value);
             sb.append("&");
+        }
         }
         String result = "";
         if (sb.length() < 1) {

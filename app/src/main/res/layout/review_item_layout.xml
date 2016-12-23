@@ -41,38 +41,39 @@
             android:layout_toRightOf="@+id/user_head">
 
             <TextView
-                android:textColor="@color/user_name_bg"
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="名字" />
+                android:text="名字"
+                android:textColor="@color/user_name_bg" />
 
             <TextView
-                android:textColor="@color/user_name_bg"
                 android:id="@+id/user_levle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/user_name"
-                android:text="@string/book_detail_user_lv" />
+                android:text="@string/book_detail_user_lv"
+                android:textColor="@color/user_name_bg" />
 
             <TextView
-                android:layout_alignParentRight="true"
                 android:id="@+id/tv_like_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:drawableLeft="@drawable/post_item_like"
                 android:drawablePadding="5dp"
                 android:text="6" />
+
             <TextView
-                android:layout_marginTop="2dp"
-                android:layout_below="@+id/user_name"
                 android:id="@+id/tv_review_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/user_name"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
                 android:textSize="10sp" />
         </RelativeLayout>
 
@@ -91,8 +92,8 @@
     </RelativeLayout>
 
     <TextView
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:background="@color/item_line_bg" />
 </LinearLayout>

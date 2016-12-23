@@ -6,8 +6,8 @@ package yueshenginfo.com.mynovel.publics.common;
  */
 
 public class Constants {
-   public static  String MessageInfo="MessageInfo";
-   public static  String HistorySearch="HistorySearch";
+    public static String MessageInfo = "MessageInfo";
+    public static String HistorySearch = "HistorySearch";
 
     /**
      *
@@ -16,16 +16,17 @@ public class Constants {
         public static String BaseUrl = "http://api.zhuishushenqi.com";
         public static final String IMG_BASE_URL = "http://statics.zhuishushenqi.com";
 
-        public static String GetBookChapterUrl = BaseUrl+"/mix-atoc";
+        public static String GetBookChapterUrl = BaseUrl + "/mix-atoc";
         public static String GetBookContentUrl = "http://chapter2.zhuishushenqi.com/chapter";
-        public static String GetBooksCategoryUrl = BaseUrl+"/cats/lv2";
-        public static String GetBooksMoreUrl = BaseUrl+"/book/by-categories";
-        public static String GetBooksRecommendUrl = BaseUrl+"/book/recommend";
-        public static String GetAllLookBooksUrl = BaseUrl+"/book/hot-word";
-        public static String GetSearchWordsUrl = BaseUrl+"/book/auto-complete";
-        public static String GetSearchResultUrl = BaseUrl+"/book/fuzzy-search";
-        public static String GetBookDetailUrl = BaseUrl+"/book";
-        public static String GetBookDetailReviewUrl = BaseUrl+"/post/review/best-by-book";
+        public static String GetBooksCategoryUrl = BaseUrl + "/cats/lv2";
+        public static String GetBooksMoreUrl = BaseUrl + "/book/by-categories";
+        public static String GetBooksRecommendUrl = BaseUrl + "/book/recommend";
+        public static String GetAllLookBooksUrl = BaseUrl + "/book/hot-word";
+        public static String GetSearchWordsUrl = BaseUrl + "/book/auto-complete";
+        public static String GetSearchResultUrl = BaseUrl + "/book/fuzzy-search";
+        public static String GetBookDetailUrl = BaseUrl + "/book";
+        public static String GetBookDetailReviewUrl = BaseUrl + "/post/review/best-by-book";
+        public static String GetUserDetailReviewUrl = BaseUrl + "/post";
     }
 
     /**
@@ -42,5 +43,7 @@ public class Constants {
         public static final int GetSearchResultTag = 1008;
         public static final int GetBookDetailTag = 1009;
         public static final int GetBookDetailReviewTag = 1010;
+        public static final int GetUserDetailReviewTag = 1011;
+        public static final int GetReviewFloorTag = 1012;
     }
 }
