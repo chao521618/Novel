@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,24 +20,24 @@ import java.util.Map;
 
 import yueshenginfo.com.mynovel.IBaseFragment;
 import yueshenginfo.com.mynovel.R;
-import yueshenginfo.com.mynovel.module.review.adapter.ReviewAdapter;
-import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
-import yueshenginfo.com.mynovel.module.review.presenter.MoreReviewPresenter;
-import yueshenginfo.com.mynovel.module.review.view.MoreReviewView;
+import yueshenginfo.com.mynovel.module.review.adapter.CommunityAdapter;
+import yueshenginfo.com.mynovel.module.review.dto.CommunityDto;
+import yueshenginfo.com.mynovel.module.review.presenter.CommunityPresenter;
+import yueshenginfo.com.mynovel.module.review.view.CommunityView;
 import yueshenginfo.com.mynovel.publics.utils.T;
 
 /**
  * Created by huchao on 2016/12/23.
  * Email 1064224874@qq.com
  */
-public class ReviewFragment extends IBaseFragment implements MoreReviewView {
+public class CommunityFragment extends IBaseFragment implements CommunityView {
     private RecyclerView rv_review;
     private SpringView mSpringView;
-    private ReviewAdapter mReviewAdapter;
-    private ArrayList<ReviewDto.ReviewsVO> mReviewDtosList;
-    private MoreReviewPresenter mMoreReviewPresenter;
-    private String bookId;
+    private CommunityAdapter mCommunityAdapter;
+    private ArrayList<CommunityDto.PostsVO> mPostsVOList;
     private int startFlag;
+    private String bookId;
+    private CommunityPresenter mCommunityPresenter;
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
@@ -49,39 +48,35 @@ public class ReviewFragment extends IBaseFragment implements MoreReviewView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        rv_review = getViewById(R.id.rv_review);
-        mSpringView = getViewById(R.id.springview);
         initViews();
         initDatas();
     }
 
     @Override
     public void initViews() {
-        bookId ="";
-        mReviewDtosList = new ArrayList<>();
         startFlag = 0;
-        Log.e("'ddd",getArguments().getString("bookId"));
         bookId = getArguments().getString("bookId");
-        mMoreReviewPresenter = new MoreReviewPresenter(this);
+        mPostsVOList = new ArrayList<>();
+        mCommunityPresenter = new CommunityPresenter(this);
         initRecyclerView();
-    }
-
-    private void initRecyclerView() {
-        rv_review.setLayoutManager(new LinearLayoutManager(mContext));
-        mReviewAdapter = new ReviewAdapter(mContext, mReviewDtosList);
-        rv_review.setAdapter(mReviewAdapter);
-        rv_review.addOnItemTouchListener(new OnItemClickListener() {
-            @Override
-            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                T.showShort(mContext, mReviewDtosList.get(i).getTitle());
-            }
-        });
-        initRefushLoadmore();
     }
 
     @Override
     public void initDatas() {
-        getMoreReview();
+        getCommunity();
+    }
+
+    private void initRecyclerView() {
+        rv_review.setLayoutManager(new LinearLayoutManager(mContext));
+        mCommunityAdapter = new CommunityAdapter(mContext, mPostsVOList);
+        rv_review.setAdapter(mCommunityAdapter);
+        rv_review.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                T.showShort(mContext, mPostsVOList.get(i).getTitle());
+            }
+        });
+        initRefushLoadmore();
     }
 
     /**
@@ -101,7 +96,6 @@ public class ReviewFragment extends IBaseFragment implements MoreReviewView {
                     @Override
                     public void run() {
                         startFlag += 20;
-                        getMoreReview();
                     }
                 }, 1000);
                 mSpringView.onFinishFreshAndLoad();
@@ -110,26 +104,23 @@ public class ReviewFragment extends IBaseFragment implements MoreReviewView {
         mSpringView.setFooter(new DefaultFooter(mContext));
     }
 
-    /**
-     * 请求数据
-     */
-    private void getMoreReview() {
+    private void getCommunity() {
         showProgress();
         Map<String, Object> params = new HashMap<>();
         params.put("book", bookId);
         params.put("sort", "updated");
+        params.put("type", "normal,vote");
         params.put("start", startFlag);
         params.put("limit", 20);
-        mMoreReviewPresenter.getMoreReview(params);
+        mCommunityPresenter.getCommunity(params);
     }
 
     @Override
-    public void getMoreReviewResult(boolean isOk, ReviewDto dto) {
+    public void getCommunityResult(boolean isOk, CommunityDto dto) {
         if (isOk) {
-            mReviewDtosList.addAll(dto.getReviews());
+            mPostsVOList.addAll(dto.getPosts());
         }
-        mReviewAdapter.notifyDataSetChanged();
+        mCommunityAdapter.notifyDataSetChanged();
         dismissProgress();
     }
-
 }

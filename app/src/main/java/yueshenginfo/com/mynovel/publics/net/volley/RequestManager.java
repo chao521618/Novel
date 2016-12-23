@@ -14,6 +14,7 @@ import yueshenginfo.com.mynovel.module.home.dto.BookRecommendDto;
 import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
+import yueshenginfo.com.mynovel.module.review.dto.CommunityDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewFloorDto;
 import yueshenginfo.com.mynovel.module.review.dto.UserReviewDto;
@@ -220,6 +221,19 @@ public class RequestManager {
                 listener, errorListener);
         /** 添加标签 **/
         request.setTag(Constants.RequestTag.GetMoreReviewTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+    /**
+     * 获取友圈
+     */
+    public void requestCommunity(Map<String, Object> params,
+                                  Response.Listener<CommunityDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<CommunityDto> request = new RequestGet<>(returnGetUrl1(
+                Constants.ServiceInterFace.GetCommunityUrl, params), CommunityDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetCommunityTag);
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }

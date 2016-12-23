@@ -13,7 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import yueshenginfo.com.mynovel.IBaseActivity;
 import yueshenginfo.com.mynovel.R;
-import yueshenginfo.com.mynovel.module.home.fragment.BooksFragment;
+import yueshenginfo.com.mynovel.module.review.fragment.CommunityFragment;
 import yueshenginfo.com.mynovel.module.review.fragment.ReviewFragment;
 
 /**
@@ -49,33 +49,31 @@ public class ContainerActivity extends IBaseActivity {
 
     @Override
     public void initViews() {
-        ReviewFragment mReviewFragment=new ReviewFragment();
+        ReviewFragment mReviewFragment = new ReviewFragment();
+        CommunityFragment mCommunityFragment = new CommunityFragment();
         setTitle(getIntent().getStringExtra("bookName"));
         fragmentFlag = getIntent().getIntExtra("fragmentFlag", 0);
         bookId = getIntent().getStringExtra("bookId");
         // SegmentTabLayout相关初始化以及数据绑定
         mFragmentArrayList = new ArrayList<>();
-        mDecorView = getWindow().getDecorView();
-        mFragmentArrayList.add(mReviewFragment);
-        mFragmentArrayList.add(new BooksFragment());
-        mSegmentTabLayout.setTabData(title, this, R.id.fl_change, mFragmentArrayList);
-//        mSegmentTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
-//            @Override
-//            public void onTabSelect(int position) {
-//            }
-//
-//            @Override
-//            public void onTabReselect(int position) {
-//            }
-//        });
+
+        Bundle mBundle = new Bundle();
+        mBundle.putString("bookId", bookId);
         if (fragmentFlag == 1) {
             mSegmentTabLayout.setCurrentTab(0);
-            Bundle mBundle = new Bundle();
-            mBundle.putString("bookId", bookId);
             mReviewFragment.setArguments(mBundle);
         } else if (fragmentFlag == 2) {
             mSegmentTabLayout.setCurrentTab(1);
+            mCommunityFragment.setArguments(mBundle);
         }
+
+        mDecorView = getWindow().getDecorView();
+        mFragmentArrayList.add(mReviewFragment);
+        mFragmentArrayList.add(mCommunityFragment);
+        mSegmentTabLayout.setTabData(title, this, R.id.fl_change, mFragmentArrayList);
+
+
+
     }
 
     @Override

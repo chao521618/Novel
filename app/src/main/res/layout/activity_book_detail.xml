@@ -311,6 +311,7 @@
                 android:background="@color/item_line_bg" />
 
             <RelativeLayout
+                android:id="@+id/datail_conmunity"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_width="match_parent"

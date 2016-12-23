@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">友记</string>
     <string name="book_detail_user_lv">&#160;lv.%1$d</string>
-    <string name="book_detail_community">欢迎进入 %1$s 的友区</string>
+    <string name="book_detail_community">欢迎进入 %1$s 的友圈</string>
     <string name="book_detail_post_count">共有%1$d个帖子呦</string>
     <string name="book_review_like_num">共有%1$d个人赞过</string>
     <string name="review_floor_num">第%1$d楼</string>

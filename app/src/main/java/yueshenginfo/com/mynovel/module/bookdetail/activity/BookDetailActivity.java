@@ -165,7 +165,7 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
         }
     }
 
-    @OnClick({R.id.add_to_shelf, R.id.begin_read, R.id.book_desc, R.id.tv_review_more})
+    @OnClick({R.id.add_to_shelf, R.id.begin_read, R.id.book_desc, R.id.tv_review_more, R.id.datail_conmunity})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_to_shelf:
@@ -174,11 +174,17 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
             case R.id.begin_read:
                 T.showShort(mContext, "开始阅读");
                 break;
+            case R.id.datail_conmunity:
+                Intent intent = new Intent(mContext, ContainerActivity.class);
+                intent.putExtra("fragmentFlag", 2);
+                intent.putExtra("bookId", id);
+                startActivity(intent);
+                break;
             case R.id.tv_review_more:
                 Intent mIntent = new Intent(mContext, ContainerActivity.class);
-                mIntent.putExtra("fragmentFlag",1);
-                mIntent.putExtra("bookName",bookName.getText().toString());
-                mIntent.putExtra("bookId",id);
+                mIntent.putExtra("fragmentFlag", 1);
+                mIntent.putExtra("bookName", bookName.getText().toString());
+                mIntent.putExtra("bookId", id);
                 startActivity(mIntent);
                 break;
             case R.id.book_desc:

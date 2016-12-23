@@ -28,6 +28,7 @@ public class Constants {
         public static String GetBookDetailReviewUrl = BaseUrl + "/post/review/best-by-book";
         public static String GetUserDetailReviewUrl = BaseUrl + "/post";
         public static String GetMoreReviewUrl = BaseUrl + "/post/review/by-book";
+        public static String GetCommunityUrl = BaseUrl + "/post/by-book";
     }
 
     /**
@@ -47,5 +48,6 @@ public class Constants {
         public static final int GetUserDetailReviewTag = 1011;
         public static final int GetReviewFloorTag = 1012;
         public static final int GetMoreReviewTag = 1013;
+        public static final int GetCommunityTag = 1013;
     }
 }
