@@ -209,6 +209,21 @@ public class RequestManager {
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
+
+    /**
+     * 获取更多用户评论
+     */
+    public void requestMoreReview(Map<String, Object> params,
+                                   Response.Listener<ReviewDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<ReviewDto> request = new RequestGet<>(returnGetUrl1(
+                Constants.ServiceInterFace.GetMoreReviewUrl, params), ReviewDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetMoreReviewTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+
     // --------------------以上是请求---------------------------------------
 
     /**

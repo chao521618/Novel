@@ -11,21 +11,24 @@ import yueshenginfo.com.mynovel.module.review.view.UserReviewView;
  * Created by huchao on 2016/12/23.
  * Email 1064224874@qq.com
  */
-public class UserReviewPresenter extends IBasePresenter<UserReviewView> implements UserReviewInterface{
+public class UserReviewPresenter extends IBasePresenter<UserReviewView> implements UserReviewInterface {
     private UserReviewModel mUserReviewModel;
+
     public UserReviewPresenter(UserReviewView userReviewView) {
         super(userReviewView);
     }
 
     @Override
     public void initialized() {
-        mUserReviewModel=new UserReviewModelImpl();
+        mUserReviewModel = new UserReviewModelImpl();
     }
-public void getUserReview(Object object){
-    mUserReviewModel.getUserReview(object,UserReviewPresenter.this);
-}
+
+    public void getUserReview(Object object) {
+        mUserReviewModel.getUserReview(object, UserReviewPresenter.this);
+    }
+
     @Override
     public void getUserReviewViewResult(boolean isOk, UserReviewDto dto) {
-getView().getUserReviewViewResult(isOk,dto);
+        getView().getUserReviewViewResult(isOk, dto);
     }
 }

@@ -32,6 +32,7 @@ import yueshenginfo.com.mynovel.module.bookdetail.presenter.BookDetailPresenter;
 import yueshenginfo.com.mynovel.module.bookdetail.presenter.BookDetailReviewPresenter;
 import yueshenginfo.com.mynovel.module.bookdetail.view.BookDetailReviewView;
 import yueshenginfo.com.mynovel.module.bookdetail.view.BookDetailView;
+import yueshenginfo.com.mynovel.module.review.activity.ContainerActivity;
 import yueshenginfo.com.mynovel.module.review.activity.ItemReviewActivity;
 import yueshenginfo.com.mynovel.module.review.adapter.ReviewAdapter;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
@@ -164,7 +165,7 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
         }
     }
 
-    @OnClick({R.id.add_to_shelf, R.id.begin_read, R.id.book_desc})
+    @OnClick({R.id.add_to_shelf, R.id.begin_read, R.id.book_desc, R.id.tv_review_more})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_to_shelf:
@@ -172,6 +173,13 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
                 break;
             case R.id.begin_read:
                 T.showShort(mContext, "开始阅读");
+                break;
+            case R.id.tv_review_more:
+                Intent mIntent = new Intent(mContext, ContainerActivity.class);
+                mIntent.putExtra("fragmentFlag",1);
+                mIntent.putExtra("bookName",bookName.getText().toString());
+                mIntent.putExtra("bookId",id);
+                startActivity(mIntent);
                 break;
             case R.id.book_desc:
                 if (LineCount) {
@@ -193,8 +201,8 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
         rvReview.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                Intent mIntent=new Intent(mContext,ItemReviewActivity.class);
-                mIntent.putExtra("id",mReviewsVOLists.get(i).get_id());
+                Intent mIntent = new Intent(mContext, ItemReviewActivity.class);
+                mIntent.putExtra("id", mReviewsVOLists.get(i).get_id());
                 startActivity(mIntent);
             }
         });

@@ -36,25 +36,31 @@
             android:id="@+id/user_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/user_head"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/user_head">
 
             <TextView
+                android:layout_marginTop="3dp"
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="名字"
                 android:textColor="@color/user_name_bg" />
-
             <TextView
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/user_name"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:paddingRight="2dp"
                 android:id="@+id/user_levle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/user_name"
+                android:background="#c5d69710"
+                android:gravity="center"
                 android:text="@string/book_detail_user_lv"
-                android:textColor="@color/user_name_bg" />
+                android:textColor="#fff"
+                android:textSize="9dp" />
 
             <TextView
                 android:id="@+id/tv_like_num"
@@ -68,17 +74,18 @@
                 android:text="6" />
 
             <TextView
+                android:text="dddddd"
                 android:id="@+id/tv_review_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_name"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
                 android:textSize="10sp" />
         </RelativeLayout>
 
 
         <TextView
+
             android:id="@+id/user_review_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
