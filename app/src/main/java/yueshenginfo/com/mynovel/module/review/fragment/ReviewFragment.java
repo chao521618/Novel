@@ -43,16 +43,18 @@ public class ReviewFragment extends IBaseFragment implements MoreReviewView {
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_review, container, false);
+        rv_review = (RecyclerView) view.findViewById(R.id.rv_review);
+        mSpringView = (SpringView) view.findViewById(R.id.springview);
+        initViews();
+        initDatas();
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        rv_review = getViewById(R.id.rv_review);
-        mSpringView = getViewById(R.id.springview);
-        initViews();
-        initDatas();
+
+
     }
 
     @Override

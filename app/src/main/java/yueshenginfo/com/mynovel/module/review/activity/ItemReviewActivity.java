@@ -121,9 +121,14 @@ public class ItemReviewActivity extends IBaseActivity implements UserReviewView,
     @Override
     public void getReviewFloorResult(boolean isOk, ReviewFloorDto dto) {
         if (isOk) {
-            for (int i = 0; i < 6; i++) {
-                mCommentsVOLists.add(dto.getComments().get(i));
+            if (dto.getComments().size()>6){
+                for (int i = 0; i < 6; i++) {
+                    mCommentsVOLists.add(dto.getComments().get(i));
+                }
+            }else {
+                mCommentsVOLists.addAll(dto.getComments());
             }
+
             mTotlesVOLists.addAll(dto.getComments());
         }
         mUserLikeNumAdapter.notifyDataSetChanged();

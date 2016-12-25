@@ -59,12 +59,13 @@ public class ContainerActivity extends IBaseActivity {
 
         Bundle mBundle = new Bundle();
         mBundle.putString("bookId", bookId);
+        mReviewFragment.setArguments(mBundle);
+        mCommunityFragment.setArguments(mBundle);
         if (fragmentFlag == 1) {
             mSegmentTabLayout.setCurrentTab(0);
-            mReviewFragment.setArguments(mBundle);
+
         } else if (fragmentFlag == 2) {
             mSegmentTabLayout.setCurrentTab(1);
-            mCommunityFragment.setArguments(mBundle);
         }
 
         mDecorView = getWindow().getDecorView();

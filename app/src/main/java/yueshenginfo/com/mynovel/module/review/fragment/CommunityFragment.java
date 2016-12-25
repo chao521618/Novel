@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,18 +43,22 @@ public class CommunityFragment extends IBaseFragment implements CommunityView {
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_review, container, false);
+        rv_review = (RecyclerView) view.findViewById(R.id.rv_review);
+        mSpringView = (SpringView) view.findViewById(R.id.springview);
+        initViews();
+        initDatas();
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initViews();
-        initDatas();
+
     }
 
     @Override
     public void initViews() {
+        bookId ="";
         startFlag = 0;
         bookId = getArguments().getString("bookId");
         mPostsVOList = new ArrayList<>();
