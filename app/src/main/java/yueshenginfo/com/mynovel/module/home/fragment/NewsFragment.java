@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import yueshenginfo.com.mynovel.IBaseFragment;
 import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.adapter.ViewPagerAdapter;
+import yueshenginfo.com.mynovel.module.news.fragment.NewsListFragment;
 
 /**
  * Created by huchao on 2016/11/30.
@@ -25,7 +26,8 @@ public class NewsFragment extends IBaseFragment {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
-private String[] title={"头条","科技","财经","军事","体育"};
+    private String[] title = {"头条", "科技", "财经", "军事", "体育"};
+
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_picture, container, false);
@@ -49,18 +51,16 @@ private String[] title={"头条","科技","财经","军事","体育"};
         mFragmentList.add(new NewsListFragment());
         mFragmentList.add(new NewsListFragment());
         mFragmentList.add(new NewsListFragment());
-        mViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), mFragmentList,title);
+        mViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), mFragmentList, title);
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
-
 
 
     @Override
     public void initDatas() {
 
     }
-
 
 
 }

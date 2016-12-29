@@ -35,6 +35,7 @@ public class Constants {
         public static String GetMoreReviewUrl = BaseUrl + "/post/review/by-book";
         public static String GetCommunityUrl = BaseUrl + "/post/by-book";
         public static String GetVideoListUrl = BaseVideoUrl+"/nc/video/list";
+        public static String GetNewsListUrl = BaseVideoUrl+"/nc/article";
     }
 
     /**
@@ -56,5 +57,6 @@ public class Constants {
         public static final int GetMoreReviewTag = 1013;
         public static final int GetCommunityTag = 1014;
         public static final int GetVideoListTag = 1015;
+        public static final int GetNewsListTag = 1016;
     }
 }

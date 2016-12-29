@@ -125,6 +125,16 @@ public class DateUtil {
         return new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(time);
 
     }
+    /**
+     * 格式到分（不要年份）
+     *
+     * @param time
+     * @return
+     */
+    public static String getOther(long time) {
+        return new SimpleDateFormat("MM-dd HH:mm").format(time);
+
+    }
 
     /**
      * 格式到天

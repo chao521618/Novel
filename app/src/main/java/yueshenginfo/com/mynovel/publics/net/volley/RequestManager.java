@@ -15,6 +15,7 @@ import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
 import yueshenginfo.com.mynovel.module.home.dto.VideoListDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
+import yueshenginfo.com.mynovel.module.news.dto.NewsDto;
 import yueshenginfo.com.mynovel.module.review.dto.CommunityDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewFloorDto;
@@ -249,6 +250,19 @@ public class RequestManager {
                 listener, errorListener);
         /** 添加标签 **/
         request.setTag(Constants.RequestTag.GetVideoListTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+    /**
+     * 获取视频列表
+     */
+    public void requestNewsList(Map<String,Object> params,
+                                Response.Listener<NewsDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<NewsDto> request = new RequestGet<>(returnGetNokeyUrl(
+                Constants.ServiceInterFace.GetNewsListUrl, params), NewsDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetNewsListTag);
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }
