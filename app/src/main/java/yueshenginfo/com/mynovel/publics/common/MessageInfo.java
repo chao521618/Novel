@@ -6,7 +6,7 @@ import yueshenginfo.com.mynovel.publics.utils.SharePreferenceUtils;
 
 
 /**
- * Description: 从SharedPreferences获取用户信息<br/>
+ * Description: 从SharedPreferences获取历史收看<br/>
  * <p/>
  *
  * @version 1.0

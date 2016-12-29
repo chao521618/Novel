@@ -77,7 +77,7 @@ public class BookShelfFragment extends IBaseFragment implements BooksRecommendVi
 
     @Override
     public void initViews() {
-        setTitle("Reader");
+        setTitle("友记书架");
         rotate3D();
         mBooksRecommendPresenter = new BooksRecommendPresenter(this);
         mBooksVOArrayList = new ArrayList<>();

@@ -8,6 +8,10 @@ package yueshenginfo.com.mynovel.publics.common;
 public class Constants {
     public static String MessageInfo = "MessageInfo";
     public static String HistorySearch = "HistorySearch";
+    public static final String FLIP_STYLE = "flipStyle";
+//    public static String PATH_DATA = FileUtils.createRootPath(AppUtils.getAppContext()) + "/cache";
+
+  //  public static String BASE_PATH = FileUtils.createRootPath(AppUtils.getAppContext()) + "/book/";
 
     /**
      *
@@ -15,6 +19,7 @@ public class Constants {
     public static class ServiceInterFace {
         public static String BaseUrl = "http://api.zhuishushenqi.com";
         public static final String IMG_BASE_URL = "http://statics.zhuishushenqi.com";
+        public static final String BaseVideoUrl = "http://c.3g.163.com";
 
         public static String GetBookChapterUrl = BaseUrl + "/mix-atoc";
         public static String GetBookContentUrl = "http://chapter2.zhuishushenqi.com/chapter";
@@ -29,6 +34,7 @@ public class Constants {
         public static String GetUserDetailReviewUrl = BaseUrl + "/post";
         public static String GetMoreReviewUrl = BaseUrl + "/post/review/by-book";
         public static String GetCommunityUrl = BaseUrl + "/post/by-book";
+        public static String GetVideoListUrl = BaseVideoUrl+"/nc/video/list";
     }
 
     /**
@@ -48,6 +54,7 @@ public class Constants {
         public static final int GetUserDetailReviewTag = 1011;
         public static final int GetReviewFloorTag = 1012;
         public static final int GetMoreReviewTag = 1013;
-        public static final int GetCommunityTag = 1013;
+        public static final int GetCommunityTag = 1014;
+        public static final int GetVideoListTag = 1015;
     }
 }

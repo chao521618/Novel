@@ -47,6 +47,7 @@ public abstract class IBaseActivity extends FragmentActivity {
 
         mApplication = IBaseApplication.getInstance();
         mApplication.mScreenManager.pushActivity(this);// 管理Activity
+
     }
 
     /**

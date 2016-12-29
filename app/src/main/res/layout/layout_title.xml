@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/reader_theme_color"
              android:id="@+id/layout_title_fl"
              android:layout_width="match_parent"
              android:layout_height="wrap_content">
@@ -38,6 +39,7 @@
             android:visibility="gone"/>
 
         <TextView
+            android:textColor="@color/page_white_bg"
             android:id="@+id/titlename_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

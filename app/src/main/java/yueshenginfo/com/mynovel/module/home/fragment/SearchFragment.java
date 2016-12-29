@@ -90,6 +90,7 @@ public class SearchFragment extends IBaseFragment implements AllLookBooksView, V
 
     @Override
     public void initViews() {
+        setTitle("友记搜索");
         mArrayList = new ArrayList<>();
         mPopArrayList = new ArrayList<>();
         mList = new ArrayList<>();

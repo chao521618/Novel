@@ -29,8 +29,8 @@ import java.util.concurrent.TimeUnit;
  * Title: OkHttpStack<br/>
  * Description: okhttp作为volley传输层框架所需Stack<br/>
  *
- * Copyright: Copyright (c) 美德威<br/>
- * Company: 青岛美德威文化传播有限公司<br/>
+ * Copyright: Copyright (c) <br/>
+ * Company: <br/>
  *
  * @author create 李忠峰 2016年3月19日<br/>
  * @since 1.0

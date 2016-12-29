@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/item_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_original_img"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            fresco:placeholderImage="@drawable/default_video_img"
+            fresco:placeholderImageScaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/item_original_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="秦相要对济公重打四十大板，没想到怎么打都打不到济公"
+            android:textColor="@color/page_white_bg" />
+
+        <ImageView
+            android:id="@+id/item_start_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/video_play_btn" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/item_company_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            fresco:roundAsCircle="true" />
+
+        <TextView
+            android:id="@+id/item_company_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="ssssss"
+            android:textSize="15dp" />
+    </LinearLayout>
+</LinearLayout>

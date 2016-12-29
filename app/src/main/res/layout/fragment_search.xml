@@ -7,13 +7,13 @@
     android:background="@color/page_white_bg"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
 
     <LinearLayout
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:id="@+id/search_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,6 +78,8 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
@@ -115,6 +117,8 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <LinearLayout
+           android:paddingLeft="15dp"
+           android:paddingRight="15dp"
            android:orientation="vertical"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">

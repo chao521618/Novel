@@ -13,6 +13,7 @@ import yueshenginfo.com.mynovel.module.home.dto.BookContentDto;
 import yueshenginfo.com.mynovel.module.home.dto.BookRecommendDto;
 import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
+import yueshenginfo.com.mynovel.module.home.dto.VideoListDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
 import yueshenginfo.com.mynovel.module.review.dto.CommunityDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
@@ -238,6 +239,19 @@ public class RequestManager {
         IVolley.getRequestQueuemanager().add(request);
     }
 
+    /**
+     * 获取视频列表
+     */
+    public void requestVideoList(Map<String,Object> params,
+                                       Response.Listener<VideoListDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<VideoListDto> request = new RequestGet<>(returnGetNokeyUrl(
+                Constants.ServiceInterFace.GetVideoListUrl, params), VideoListDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetVideoListTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
     // --------------------以上是请求---------------------------------------
 
     /**
@@ -281,7 +295,22 @@ public class RequestManager {
         sb.append(returnGetPara(params));
         return sb.toString();
     }
-
+    /**
+     * 拼接请求
+     *
+     * @param url
+     * @param
+     * @return
+     */
+    public static String returnGetNokeyUrl(String url, Map<String, Object> params) {
+        // 设置Get请求方式
+        StringBuffer sb = new StringBuffer();
+        sb.append(url);
+        sb.append("/");
+        Log.e("params", String.valueOf(params.keySet()));
+        sb.append(returnGetNoKeyPara(params));
+        return sb.toString();
+    }
     /**
      * 拼接请求参数
      *
@@ -323,5 +352,19 @@ public class RequestManager {
         }
         return result;
     }
-
+    private static String returnGetNoKeyPara(Map<String, Object> params) {
+        StringBuffer sb = new StringBuffer();
+        for (String key : params.keySet()) {
+                String value = params.get(key).toString();
+                sb.append(value);
+                sb.append("/");
+        }
+        String result = "";
+        if (sb.length() < 1) {
+            result = sb.toString();
+        } else {
+            result = sb.deleteCharAt(sb.length() - 1).toString();
+        }
+        return result;
+    }
 }

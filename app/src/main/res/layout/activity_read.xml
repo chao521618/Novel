@@ -20,9 +20,33 @@
         android:layout_margin="10dp"
         android:text="这是Title" />
 
+    <yueshenginfo.com.mynovel.module.home.read.SlowViewPager
+        android:id="@+id/viewpager_reader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <yueshenginfo.com.mynovel.module.home.read.BookContentCustomView
+        android:id="@+id/reader_current"
+        style="@style/ReaderText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/book_name" />
+
+    <yueshenginfo.com.mynovel.module.home.read.BookContentCustomView
+        android:id="@+id/reader_next"
+        style="@style/ReaderText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/book_name" />
+
+    <yueshenginfo.com.mynovel.module.home.read.BookContentCustomView
+        android:id="@+id/reader_prev"
+        style="@style/ReaderText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/book_name" />
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/reader_menu_bg_color"

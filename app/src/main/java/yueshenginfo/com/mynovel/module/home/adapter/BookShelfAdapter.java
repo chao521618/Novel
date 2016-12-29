@@ -35,7 +35,6 @@ public class BookShelfAdapter extends BaseQuickAdapter<BookRecommendDto.BooksVO>
         }else {
             baseViewHolder.setText(R.id.book_state, "未完结");
         }
-        Log.e("bookShelfBean.getLatelyFollower()", String.valueOf(bookShelfBean.getLatelyFollower()));
         baseViewHolder.setText(R.id.book_readstate,String.valueOf(bookShelfBean.getLatelyFollower()));
         //item的一个布局
         LinearLayout mLinearLayout = baseViewHolder.getView(R.id.bookshelf_item_layout);

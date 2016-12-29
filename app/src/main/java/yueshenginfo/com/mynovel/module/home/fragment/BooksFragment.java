@@ -49,7 +49,7 @@ public class BooksFragment extends IBaseFragment implements BooksCategoryView {
 
     @Override
     public void initViews() {
-        setTitle("Reader");
+        setTitle("友记书城");
         mMaleVOArrayList = new ArrayList<>();
         mBooksCategoryPresenter = new BooksCategoryPresenter(this);
         //RecyclerView的布局管理器以及绑定adapter

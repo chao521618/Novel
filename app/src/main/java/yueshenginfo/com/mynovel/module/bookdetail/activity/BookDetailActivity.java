@@ -32,6 +32,7 @@ import yueshenginfo.com.mynovel.module.bookdetail.presenter.BookDetailPresenter;
 import yueshenginfo.com.mynovel.module.bookdetail.presenter.BookDetailReviewPresenter;
 import yueshenginfo.com.mynovel.module.bookdetail.view.BookDetailReviewView;
 import yueshenginfo.com.mynovel.module.bookdetail.view.BookDetailView;
+import yueshenginfo.com.mynovel.module.home.activity.ReadActivity;
 import yueshenginfo.com.mynovel.module.review.activity.ContainerActivity;
 import yueshenginfo.com.mynovel.module.review.activity.ItemReviewActivity;
 import yueshenginfo.com.mynovel.module.review.adapter.ReviewAdapter;
@@ -172,7 +173,9 @@ public class BookDetailActivity extends IBaseActivity implements BookDetailView,
                 T.showShort(mContext, "添加书架");
                 break;
             case R.id.begin_read:
-                T.showShort(mContext, "开始阅读");
+                Intent intent2 = new Intent(mContext, ReadActivity.class);
+                intent2.putExtra("bookId", id);
+                startActivity(intent2);
                 break;
             case R.id.datail_conmunity:
                 Intent intent = new Intent(mContext, ContainerActivity.class);

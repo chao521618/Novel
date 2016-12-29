@@ -22,10 +22,10 @@ import java.util.Map;
  * Title: RequestGet<br/>
  * Description:  Volley的get请求<br/>
  * <p/>
- * Copyright: Copyright (c) 众远科技<br/>
- * Company: 济南众远信息科技有限公司<br/>
+ * Copyright: Copyright (c) <br/>
+ * Company: <br/>
  *
- * @author create 高越 2015年12月15日<br/>
+ * @author create  2015年12月15日<br/>
  * @version 1.0
  * @since 1.0
  */
