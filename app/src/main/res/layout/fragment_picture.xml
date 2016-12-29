@@ -12,9 +12,9 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
-
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            app:title="友记新闻"
             android:background="@color/reader_theme_color"
             app:layout_scrollFlags="scroll|enterAlways">
         </android.support.v7.widget.Toolbar>

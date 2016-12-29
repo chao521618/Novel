@@ -35,7 +35,8 @@
         <activity android:name=".module.search.activity.SearchResultActivty" />
         <activity android:name=".module.bookdetail.activity.BookDetailActivity" />
         <activity android:name=".module.review.activity.ItemReviewActivity" />
-        <activity android:name=".module.review.activity.ContainerActivity"></activity>
+        <activity android:name=".module.review.activity.ContainerActivity" />
+        <activity android:name=".module.news.activity.NewsDetailActivity"></activity>
     </application>
 
 </manifest>
