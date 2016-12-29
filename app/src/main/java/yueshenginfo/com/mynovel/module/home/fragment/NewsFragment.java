@@ -5,15 +5,19 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
 import yueshenginfo.com.mynovel.IBaseFragment;
 import yueshenginfo.com.mynovel.R;
 import yueshenginfo.com.mynovel.module.home.adapter.ViewPagerAdapter;
+import yueshenginfo.com.mynovel.module.news.event.TypeEvent;
 import yueshenginfo.com.mynovel.module.news.fragment.NewsListFragment;
 
 /**
@@ -54,6 +58,22 @@ public class NewsFragment extends IBaseFragment {
         mViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), mFragmentList, title);
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                EventBus.getDefault().post(new TypeEvent(tab.getPosition()));
+                Log.e("3333", String.valueOf(tab.getPosition()));
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
     }
 
 
