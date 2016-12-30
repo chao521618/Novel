@@ -1,7 +1,7 @@
 package yueshenginfo.com.mynovel.module.news.view;
 
 import yueshenginfo.com.IBaseView;
-import yueshenginfo.com.mynovel.module.news.dto.NewsDto;
+import yueshenginfo.com.mynovel.module.news.dto.HeadsNewsDto;
 
 /**
  * Created by huchao on 2016/12/29.
@@ -13,5 +13,5 @@ public interface NewsView extends IBaseView {
      * @param isOk
      * @param dto
      */
-    public void getNewsResult(boolean isOk, NewsDto dto);
+    public void getNewsResult(boolean isOk, HeadsNewsDto dto);
 }

@@ -15,7 +15,8 @@ import yueshenginfo.com.mynovel.module.home.dto.BooksCategoryDto;
 import yueshenginfo.com.mynovel.module.home.dto.KeyWordsDto;
 import yueshenginfo.com.mynovel.module.home.dto.VideoListDto;
 import yueshenginfo.com.mynovel.module.morenovel.dto.BooksDto;
-import yueshenginfo.com.mynovel.module.news.dto.NewsDto;
+import yueshenginfo.com.mynovel.module.news.dto.FinanceNewsDto;
+import yueshenginfo.com.mynovel.module.news.dto.HeadsNewsDto;
 import yueshenginfo.com.mynovel.module.review.dto.CommunityDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewDto;
 import yueshenginfo.com.mynovel.module.review.dto.ReviewFloorDto;
@@ -254,15 +255,28 @@ public class RequestManager {
         IVolley.getRequestQueuemanager().add(request);
     }
     /**
-     * 获取视频列表
+     * 获取新闻头条列表
      */
     public void requestNewsList(Map<String,Object> params,
-                                Response.Listener<NewsDto> listener, Response.ErrorListener errorListener) {
-        RequestGet<NewsDto> request = new RequestGet<>(returnGetNokeyUrl(
-                Constants.ServiceInterFace.GetNewsListUrl, params), NewsDto.class,
+                                Response.Listener<HeadsNewsDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<HeadsNewsDto> request = new RequestGet<>(returnGetNokeyUrl(
+                Constants.ServiceInterFace.GetNewsListUrl, params), HeadsNewsDto.class,
                 listener, errorListener);
         /** 添加标签 **/
         request.setTag(Constants.RequestTag.GetNewsListTag);
+        /** 添加执行 **/
+        IVolley.getRequestQueuemanager().add(request);
+    }
+    /**
+     * 获取新闻科技列表
+     */
+    public void requestFinanceNewsList(Map<String,Object> params,
+                                Response.Listener<FinanceNewsDto> listener, Response.ErrorListener errorListener) {
+        RequestGet<FinanceNewsDto> request = new RequestGet<>(returnGetNokeyUrl(
+                Constants.ServiceInterFace.GetNewsListUrl, params), FinanceNewsDto.class,
+                listener, errorListener);
+        /** 添加标签 **/
+        request.setTag(Constants.RequestTag.GetFinaceListTag);
         /** 添加执行 **/
         IVolley.getRequestQueuemanager().add(request);
     }

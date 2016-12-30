@@ -86,7 +86,7 @@ public class OriginalFragment extends IBaseFragment implements View.OnClickListe
         Map<String, Object> params = new LinkedHashMap<>();
         params.put("1", "V9LG4B3A0");
         params.put("2", "n");
-        params.put("3", "10-10.html");
+        params.put("3", "0-10.html");
         mVideoListPresenter.getVideoList(params);
     }
 

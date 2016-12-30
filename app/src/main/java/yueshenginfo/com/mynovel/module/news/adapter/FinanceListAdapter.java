@@ -10,20 +10,20 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.List;
 
 import yueshenginfo.com.mynovel.R;
-import yueshenginfo.com.mynovel.module.news.dto.HeadsNewsDto;
+import yueshenginfo.com.mynovel.module.news.dto.FinanceNewsDto;
 import yueshenginfo.com.mynovel.publics.utils.DateUtil;
 
 /**
  * Created by huchao on 2016/12/28.
  * Email 1064224874@qq.com
  */
-public class NewsListAdapter extends BaseQuickAdapter<HeadsNewsDto.T1348647909107Dto> {
-    public NewsListAdapter(Context layoutResId, List<HeadsNewsDto.T1348647909107Dto> data) {
+public class FinanceListAdapter extends BaseQuickAdapter<FinanceNewsDto.T1348649580692VO> {
+    public FinanceListAdapter(Context layoutResId, List<FinanceNewsDto.T1348649580692VO> data) {
         super(R.layout.item_news_list, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, HeadsNewsDto.T1348647909107Dto s) {
+    protected void convert(BaseViewHolder baseViewHolder, FinanceNewsDto.T1348649580692VO s) {
         baseViewHolder.setText(R.id.news_title, s.getTitle());
         baseViewHolder.setText(R.id.news_origin, s.getSource());
         SimpleDraweeView mSimpleDraweeView = baseViewHolder.getView(R.id.news_img);

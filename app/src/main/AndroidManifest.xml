@@ -36,7 +36,8 @@
         <activity android:name=".module.bookdetail.activity.BookDetailActivity" />
         <activity android:name=".module.review.activity.ItemReviewActivity" />
         <activity android:name=".module.review.activity.ContainerActivity" />
-        <activity android:name=".module.news.activity.NewsDetailActivity"></activity>
+        <activity android:name=".module.news.activity.NewsDetailActivity" />
+        <activity android:name=".module.news.activity.NewsActivty"></activity>
     </application>
 
 </manifest>

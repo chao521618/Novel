@@ -3,7 +3,7 @@ package yueshenginfo.com.mynovel.module.news.presenter;
 import java.util.Map;
 
 import yueshenginfo.com.IBasePresenter;
-import yueshenginfo.com.mynovel.module.news.dto.NewsDto;
+import yueshenginfo.com.mynovel.module.news.dto.HeadsNewsDto;
 import yueshenginfo.com.mynovel.module.news.interfaces.NewsInterface;
 import yueshenginfo.com.mynovel.module.news.model.NewsModel;
 import yueshenginfo.com.mynovel.module.news.model.impl.NewsModelImpl;
@@ -30,7 +30,7 @@ public class NewsPresenter extends IBasePresenter<NewsView> implements NewsInter
     }
 
     @Override
-    public void getNewsResult(boolean isOk, NewsDto dto) {
+    public void getNewsResult(boolean isOk, HeadsNewsDto dto) {
         getView().getNewsResult(isOk, dto);
     }
 }

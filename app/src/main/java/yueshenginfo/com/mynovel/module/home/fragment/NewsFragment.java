@@ -1,24 +1,15 @@
 package yueshenginfo.com.mynovel.module.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-
 import yueshenginfo.com.mynovel.IBaseFragment;
 import yueshenginfo.com.mynovel.R;
-import yueshenginfo.com.mynovel.module.home.adapter.ViewPagerAdapter;
-import yueshenginfo.com.mynovel.module.news.event.TypeEvent;
-import yueshenginfo.com.mynovel.module.news.fragment.NewsListFragment;
+import yueshenginfo.com.mynovel.module.news.activity.NewsActivty;
 
 /**
  * Created by huchao on 2016/11/30.
@@ -26,54 +17,29 @@ import yueshenginfo.com.mynovel.module.news.fragment.NewsListFragment;
  */
 public class NewsFragment extends IBaseFragment {
 
-    private ArrayList<Fragment> mFragmentList;
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
-    private ViewPagerAdapter mViewPagerAdapter;
-    private String[] title = {"头条", "科技", "财经", "军事", "体育"};
-
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
-        View view = inflater.inflate(R.layout.fragment_picture, container, false);
+        View view = inflater.inflate(R.layout.fragment_text, container, false);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mTabLayout = getViewById(R.id.news_tabs);
-        mViewPager = getViewById(R.id.news_viewpager);
+        getViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, NewsActivty.class));
+            }
+        });
         initViews();
         initDatas();
     }
 
     @Override
     public void initViews() {
-        mFragmentList = new ArrayList<>();
-        mFragmentList.add(new NewsListFragment());
-        mFragmentList.add(new NewsListFragment());
-        mFragmentList.add(new NewsListFragment());
-        mFragmentList.add(new NewsListFragment());
-        mFragmentList.add(new NewsListFragment());
-        mViewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), mFragmentList, title);
-        mViewPager.setAdapter(mViewPagerAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                EventBus.getDefault().post(new TypeEvent(tab.getPosition()));
-                Log.e("3333", String.valueOf(tab.getPosition()));
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
     }
 
 
@@ -81,6 +47,5 @@ public class NewsFragment extends IBaseFragment {
     public void initDatas() {
 
     }
-
 
 }

@@ -1,6 +1,6 @@
 package yueshenginfo.com.mynovel.module.news.interfaces;
 
-import yueshenginfo.com.mynovel.module.news.dto.NewsDto;
+import yueshenginfo.com.mynovel.module.news.dto.HeadsNewsDto;
 
 /**
  * Created by huchao on 2016/12/29.
@@ -12,5 +12,5 @@ public interface NewsInterface {
      * @param isOk
      * @param dto
      */
-    public void getNewsResult(boolean isOk, NewsDto dto);
+    public void getNewsResult(boolean isOk, HeadsNewsDto dto);
 }

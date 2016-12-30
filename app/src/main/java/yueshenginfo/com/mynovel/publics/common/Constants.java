@@ -58,5 +58,6 @@ public class Constants {
         public static final int GetCommunityTag = 1014;
         public static final int GetVideoListTag = 1015;
         public static final int GetNewsListTag = 1016;
+        public static final int GetFinaceListTag = 1017;
     }
 }

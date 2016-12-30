@@ -6,7 +6,7 @@ import java.util.List;
  * Created by huchao on 2016/12/29.
  * Email 1064224874@qq.com
  */
-public class NewsDto {
+public class HeadsNewsDto {
 
     /**
      * postid : PHOT23S22000100A

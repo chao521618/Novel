@@ -41,6 +41,7 @@ public class NewBooksFragment extends IBaseFragment {
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.more_novel_layout, container, false);
+        EventBus.getDefault().register(this);
         return view;
     }
 
@@ -52,7 +53,7 @@ public class NewBooksFragment extends IBaseFragment {
         mRecyclerView = getViewById(R.id.more_novel_rv);
         initViews();
         initDatas();
-        EventBus.getDefault().register(this);
+
     }
 
     @Override
